@@ -12,14 +12,13 @@ public class MathGameState {
 	private boolean lastResult;
 	
 	public MathGameState() {
-		this.scores = new int[]{0, -1};
+		this.scores = new int[]{0, 0};
 		this.player = 1;
 		this.resetValues();
 	}
 	
 	public void nextPlayer() {
 		this.scores[0] = cscore;
-		this.scores[1] = 0;
 		this.player = 2;
 	}
 	
@@ -42,6 +41,10 @@ public class MathGameState {
 		return this.player;
 	}
 	
+	public int getGoal() {
+		return this.goal;
+	}
+	
 	public int getCScore() {
 		return cscore;
 	}
@@ -51,11 +54,14 @@ public class MathGameState {
 	}
 	
 	public boolean checkCorrect(int id) {
-		if (goal == 1) {
+		if (id == 2) {
+			lastResult = solveEquation(0) == solveEquation(1);
+		} else if (goal == 1) {
 			lastResult = solveEquation(id) > solveEquation((id + 1) % 2);
 		} else {
 			lastResult = solveEquation(id) < solveEquation((id + 1) % 2);
 		}
+		this.cscore += lastResult ? 1 : -1;
 		return lastResult;
 	}
 	
