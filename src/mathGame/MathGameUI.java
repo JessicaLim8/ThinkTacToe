@@ -1,6 +1,7 @@
 package mathGame;
 
 import java.awt.EventQueue;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,13 +10,19 @@ import java.awt.*;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
+
+import java.time.*;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class MathGameUI {
 
 	private JFrame frame;
 	private MathGameState state;
+	private Timer t;
 
 	/**
 	 * @wbp.nonvisual location=980,771
@@ -182,6 +189,12 @@ public class MathGameUI {
 		
 		JLabel score = new JLabel(String.format("Current Score: %d", state.getCScore()));
 		score.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		int countdown = 10;
+		Date startDate = new Date();
+		
+		JLabel timerLabel = new JLabel(String.format("Time Remaining: %d", countdown));
+		timerLabel.setAlignmentX(Component.CENTER_ALIGNMENT);		
 	 
 	    gameArea.setLayout(new BoxLayout(gameArea, BoxLayout.PAGE_AXIS));
 	    gameArea.add(title);
@@ -190,7 +203,28 @@ public class MathGameUI {
 	    gameArea.add(eq2);
 	    gameArea.add(eq3);
 	    gameArea.add(score);
-	    gameArea.add(end);
+	    gameArea.add(timerLabel);
+	    
+	    if (t != null) {
+	    	t.stop();
+	    }
+	    
+		t = new javax.swing.Timer(1000, new ActionListener() {
+		      public void actionPerformed(ActionEvent e) {
+		    	  Date now = new Date();
+		    	  float ctime = getDateDiff(startDate, now, TimeUnit.SECONDS);
+		    	  timerLabel.setText(String.format("Time Remaining: %d", countdown - (int) ctime));
+		          timerLabel.repaint();
+		    	  if (ctime >= countdown) {
+		    		  frame.getContentPane().remove(gameArea);
+		    		  t.stop();
+		    		  scoreScreen(state);
+		    	  }
+		      }
+		   }
+		);
+		
+		t.start();
 	    
 		
         eq1.addActionListener(new ActionListener()
@@ -229,6 +263,11 @@ public class MathGameUI {
 		});
 	    
 	    frame.getContentPane().add(BorderLayout.CENTER, gameArea);
+	}
+	
+	private static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+	    long diffInMillies = date2.getTime() - date1.getTime();
+	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
 	}
 	
 	private void updateGameState(MathGameState state, JButton eq1, JButton eq2, JLabel question, JLabel score) {
