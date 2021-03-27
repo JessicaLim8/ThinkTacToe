@@ -235,7 +235,7 @@ public class MathGameUI {
 		String[] eq = state.generateEquations();
 		eq1.setText(eq[0]);
 		eq2.setText(eq[1]);
-		question.setText(String.format("Select equation with the %s value", state.getGoal() == -1 ? "lower" : "higher"));
+		question.setText(String.format("Select equation with the %s value", state.getGoal() == -1 ? "LOWER" : "HIGHER"));
 		score.setText(String.format("Current Score: %d", state.getCScore()));
 	}
 
