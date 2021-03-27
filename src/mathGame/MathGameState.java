@@ -17,9 +17,14 @@ public class MathGameState {
 		this.resetValues();
 	}
 	
-	public void nextPlayer() {
-		this.scores[0] = cscore;
-		this.player = 2;
+	public boolean nextPlayer() {
+		if (this.player == 1) {
+			this.scores[0] = cscore;
+			this.player = 2;
+			return true;
+		}
+		endGame();
+		return false;
 	}
 	
 	public void endGame() {

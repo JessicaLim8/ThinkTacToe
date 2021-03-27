@@ -15,7 +15,6 @@ import javax.swing.JButton;
 public class MathGameUI {
 
 	private JFrame frame;
-	private JPanel gameArea;
 	private MathGameState state;
 
 	/**
@@ -86,11 +85,11 @@ public class MathGameUI {
         frame.setVisible(true);
 	}
 	
-	private void endScreen(MathGameState state) {
+	private void scoreScreen(MathGameState state) {
 		JPanel endScreen = new JPanel();
-		JLabel intro = new JLabel(String.format("Congrats Player %d", 1));
-		JLabel score = new JLabel(String.format("Minigame Score: %d", 1));
-		JButton end = new JButton("End Game");
+		JLabel intro = new JLabel(String.format("Congrats Player %d", state.getPlayer()));
+		JLabel score = new JLabel(String.format("Minigame Score: %d", state.getCScore()));
+		JButton end = new JButton("Finish");
 		
 		JPanel p1 = new JPanel();
 		p1.setLayout(new GridLayout(3,1));
@@ -105,6 +104,12 @@ public class MathGameUI {
 	    {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(endScreen);
+				boolean isP1 = state.nextPlayer();
+				if (isP1) {
+					initialScreen(state);
+				} else {
+					gameOverScreen(state);
+				}
 				frame.invalidate();
 				frame.validate();
 				SwingUtilities.updateComponentTreeUI(frame);
@@ -113,10 +118,20 @@ public class MathGameUI {
 	}
 	
 	private void gameOverScreen(MathGameState state) {
+		int[] results = state.getScores();
+		
+		String scoreLabel;
+		if (results[0] == results[1]) {
+			scoreLabel = "It's a tie, Play Again!";
+		} else {
+			scoreLabel = String.format("Winner: Player %d", results[0] > results[1] ? 1 : 2);
+		}
+		
+		
 		JPanel goScreen = new JPanel();
 		JLabel intro = new JLabel("Final Results");
-		JLabel result = new JLabel(String.format("Winner: Player %d", 1));
-		JLabel scores = new JLabel(String.format("Player 1: %d | Player 2: %d", 1, 10));
+		JLabel result = new JLabel(scoreLabel);
+		JLabel scores = new JLabel(String.format("Player 1: %d | Player 2: %d", results[0], results[1]));
 		JButton gameover = new JButton("Exit Minigame");
 
 		JPanel p1 = new JPanel();
@@ -126,13 +141,16 @@ public class MathGameUI {
 		p1.add(scores);
 		p1.add(gameover);
 		
-		gameArea.add(p1);
-        frame.getContentPane().add(BorderLayout.CENTER, gameArea);
+		goScreen.add(p1);
+        frame.getContentPane().add(BorderLayout.CENTER, goScreen);
         
         gameover.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().remove(goScreen);
+				if (results[0] == results[1]) {
+					initialize(new MathGameState());
+				}
 				frame.invalidate();
 				frame.validate();
 				SwingUtilities.updateComponentTreeUI(frame);
@@ -142,7 +160,7 @@ public class MathGameUI {
 	
 	private void mathScreen(MathGameState state) {
 		String[] eq = state.generateEquations();
-		this.gameArea = new JPanel();
+		JPanel gameArea = new JPanel();
 		JLabel title = new JLabel(String.format("Player %d", state.getPlayer()));
 		JLabel question = new JLabel(String.format("Select equation with the %s value", state.getGoal() == -1 ? "LOWER" : "HIGHER"));
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -165,14 +183,14 @@ public class MathGameUI {
 		JLabel score = new JLabel(String.format("Current Score: %d", state.getCScore()));
 		score.setAlignmentX(Component.CENTER_ALIGNMENT);
 	 
-	    this.gameArea.setLayout(new BoxLayout(this.gameArea, BoxLayout.PAGE_AXIS));
-	    this.gameArea.add(title);
-	    this.gameArea.add(question);
-	    this.gameArea.add(eq1);
-	    this.gameArea.add(eq2);
-	    this.gameArea.add(eq3);
-	    this.gameArea.add(score);
-	    this.gameArea.add(end);
+	    gameArea.setLayout(new BoxLayout(gameArea, BoxLayout.PAGE_AXIS));
+	    gameArea.add(title);
+	    gameArea.add(question);
+	    gameArea.add(eq1);
+	    gameArea.add(eq2);
+	    gameArea.add(eq3);
+	    gameArea.add(score);
+	    gameArea.add(end);
 	    
 		
         eq1.addActionListener(new ActionListener()
@@ -202,7 +220,11 @@ public class MathGameUI {
         end.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
-				updateGameState(state, eq1, eq2, question, score);
+				frame.getContentPane().remove(gameArea);
+				scoreScreen(state);
+				frame.invalidate();
+				frame.validate();
+				SwingUtilities.updateComponentTreeUI(frame);
 			}
 		});
 	    
