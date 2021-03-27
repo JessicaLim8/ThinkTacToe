@@ -190,7 +190,7 @@ public class MathGameUI {
 		JLabel score = new JLabel(String.format("Current Score: %d", state.getCScore()));
 		score.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		int countdown = 10;
+		int countdown = 30;
 		Date startDate = new Date();
 		
 		JLabel timerLabel = new JLabel(String.format("Time Remaining: %d", countdown));
