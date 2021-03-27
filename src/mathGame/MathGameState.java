@@ -21,6 +21,7 @@ public class MathGameState {
 		if (this.player == 1) {
 			this.scores[0] = cscore;
 			this.player = 2;
+			this.cscore = 0;
 			return true;
 		}
 		endGame();
