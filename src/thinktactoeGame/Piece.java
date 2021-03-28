@@ -21,6 +21,8 @@ public class Piece extends JLabel{
 	public void occupy(char player, Icon playerIcon) {
 		this.player = player;
 		this.setIcon(playerIcon);
+		this.setHorizontalAlignment(CENTER);
+		this.setVerticalAlignment(CENTER);
 		this.occupied = true;
 	}
 	
