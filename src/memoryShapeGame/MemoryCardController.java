@@ -46,36 +46,34 @@ public class MemoryCardController {
 		shuffledList.toArray(shapes);
 		for (int i = 0; i < shapes.length; i++) {
         	Card card = new Card(shapes[i]);
-        	card.addActionListener(new ActionListener(){
-    			public void actionPerformed(ActionEvent e){
-    				moves = moves + 1;
-    				gameScreen.updateMoves(moves);
-    				if (pq.size() >= 2) {
-    					Card temp = pq.poll();
-    					Card temp1 = pq.poll();
-    					temp.flip();
-    					temp1.flip();
-    				}
-    				else if (pq.size() == 1) {
-    					Card prev = pq.peek();
-    					if (prev == card) {
-    						return;
-    					}
-    					if(prev.getShape() == card.getShape()) {
-    						card.flip();
-    						prev = pq.poll();
-    						prev.eliminate();
-    						card.eliminate();
-    						cardsLeft = cardsLeft-2;
-    						gameScreen.updateCardsLeft(cardsLeft);
-    						return;
-    					}
-    				}
-    				card.flip();
-    				pq.add(card);
-    	        	
-    	        }
-    	     });
+        	card.addActionListener(e -> {
+				moves = moves + 1;
+				gameScreen.updateMoves(moves);
+				if (pq.size() >= 2) {
+					Card temp = pq.poll();
+					Card temp1 = pq.poll();
+					temp.flip();
+					temp1.flip();
+				}
+				else if (pq.size() == 1) {
+					Card prev = pq.peek();
+					if (prev == card) {
+						return;
+					}
+					if(prev.getShape() == card.getShape()) {
+						card.flip();
+						prev = pq.poll();
+						prev.eliminate();
+						card.eliminate();
+						cardsLeft = cardsLeft-2;
+						gameScreen.updateCardsLeft(cardsLeft);
+						return;
+					}
+				}
+				card.flip();
+				pq.add(card);
+
+});
         	this.cards[i] = card;
         }
 		return this.cards;
@@ -104,7 +102,7 @@ public class MemoryCardController {
 		MemoryCardController gc = MemoryCardController.getInstance();
 		int moves = gc.startGame();
 		System.out.println(moves);
-		moves = gc.startGame();
-		System.out.println(moves);
+//		moves = gc.startGame();
+//		System.out.println(moves);
 	}
 }
