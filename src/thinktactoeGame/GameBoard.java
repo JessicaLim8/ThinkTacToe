@@ -36,7 +36,7 @@ public class GameBoard extends JPanel{
 	
 	
 	public void dropPiece(int row, int col, char turn) {
-		Icon playerIcon = turn == 'X' ? iconO : iconX;
+		Icon playerIcon = turn == 'X' ? iconX : iconO;
 		this.board[row][col].occupy(turn, playerIcon);	
 	}
 	

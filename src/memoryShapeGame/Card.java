@@ -13,14 +13,14 @@ public class Card extends JButton{
 	
 	private String shape;
 	private String face;
-	private String imagePath = "./src/images/";
+	private String imagePath = "./src/memoryShapeGame/images/";
 	private Boolean eliminated;
 	
-	private Icon back = new ImageIcon("./src/images/card_back.png");
+	private Icon back = new ImageIcon("./src/images/memoryShapeGame/card_back.png");
 	private Icon front;
 
 	public Card(String shape){
-		super(new ImageIcon("./src/images/card_back.png"));
+		super(new ImageIcon("./src/images/memoryShapeGame/card_back.png"));
 		this.shape = shape;
 		this.face = "Fliped";
 		this.front = new ImageIcon(imagePath+shape+".png");
