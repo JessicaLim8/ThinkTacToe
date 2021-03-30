@@ -1,20 +1,10 @@
 package memoryShapeGame;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class MemoryCardScreen {
 	
@@ -24,6 +14,8 @@ public class MemoryCardScreen {
 	
 	private JTextField moves;
 	private JTextField cardsLeft;
+
+	private JPanel game;
 	
 	private MemoryCardScreen(MemoryCardController gc) {
 		this.controller = gc;
@@ -48,11 +40,30 @@ public class MemoryCardScreen {
         
         JButton startGame = new JButton("Start Game");
         JButton displayRule = new JButton("Rule");
+        JButton concede = new JButton("Concede");
         p1.add(startGame);
         p1.add(displayRule);
+        p1.add(concede);
         
         JLabel gameTitle = new JLabel("Memory Card - 2D shapes");
         p2.add(gameTitle);
+
+        JPanel rulePanel = new JPanel();
+        rulePanel.setLayout(new BoxLayout(rulePanel, BoxLayout.PAGE_AXIS));
+        JLabel l1 = new JLabel("Rules");
+        l1.setFont(new Font(l1.getFont().getName(), Font.PLAIN, 45));
+        JTextArea t1 = new JTextArea();
+        t1.setBackground(l1.getBackground());
+        t1.setEditable(false);
+        t1.setFont(new Font(l1.getFont().getName(), Font.PLAIN, 20));
+        String rules = " - Click on the card to reveal the shape behind it \n" +
+                       " - Two consecutive cards with the same shape will get eliminated \n" +
+                       " - The game ends when all cards get eliminated \n" +
+                       " - The player wins the game with less moves made than the other player";
+
+        t1.setText(rules);
+        rulePanel.add(l1);
+        rulePanel.add(t1);
         
         JLabel displayMoves = new JLabel("Moves:");
         this.moves = new JTextField("0");
@@ -71,16 +82,49 @@ public class MemoryCardScreen {
         info.add(p2);
         info.add(p3);
         
-        JPanel game = new JPanel();
-        game.setLayout(new GridLayout(4,4,2,2));
+        this.game = new JPanel();
+        this.game.setLayout(new GridLayout(4,4,2,2));
         Card[] cards = this.controller.initCards();
         for (Card card: cards) {
-        	game.add(card);
+        	this.game.add(card);
         }
 
         frame.getContentPane().add(BorderLayout.NORTH, info);
-        frame.getContentPane().add(BorderLayout.CENTER, game);
+        frame.getContentPane().add(BorderLayout.CENTER, rulePanel);
         frame.setVisible(true);
+
+        startGame.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    rulePanel.setVisible(false);
+                    startGame.setEnabled(false);
+                    frame.getContentPane().remove(rulePanel);
+                    frame.getContentPane().add(game);
+                    frame.revalidate();
+                }
+            }
+        );
+
+        displayRule.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    return;
+
+                    //TODO bugged
+//                    System.out.println("Pressed");
+//                    frame.getContentPane().remove(game);
+//                    frame.getContentPane().add(rulePanel);
+//                    frame.invalidate();
+//                    frame.validate();
+                }
+            }
+        );
+
+        concede.addActionListener(actionEvent -> {
+            //TODO concede implementation
+            return;
+                }
+        );
+
+
 	}
 	
 	public void showScreen(){
@@ -94,4 +138,8 @@ public class MemoryCardScreen {
 	public void updateMoves(int moves) {
 		this.moves.setText(Integer.toString(moves));
 	}
+
+//	private void showRule(JPanel ){
+//
+//    }
 }

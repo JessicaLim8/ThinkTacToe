@@ -1,4 +1,6 @@
 .metadata
-.metadata/.lock
 .project
 .DS_store
+.idea
+out/
+ThinkTacToe.iml
