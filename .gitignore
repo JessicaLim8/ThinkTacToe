@@ -4,3 +4,6 @@
 .idea
 out/
 ThinkTacToe.iml
+bin
+bin/thinktactoeGame/Main.class
+bin/thinktactoeGame/GameBoard.class
