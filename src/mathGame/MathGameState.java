@@ -21,6 +21,7 @@ public class MathGameState {
 		if (this.player == 1) {
 			this.scores[0] = cscore;
 			this.player = 2;
+			this.cscore = 0;
 			return true;
 		}
 		endGame();
@@ -76,24 +77,34 @@ public class MathGameState {
 		int b = this.nums[id][1];
 				
 		switch(this.op[id]) {
-			case '+': result = a + b;
-			case '-': result = a + b;
-			case '*': result = a + b;
-			case '/': result = a + b;
+			case '+': 
+				result = a + b; 
+				break;
+			case '-': 
+				result = a - b;
+				break;
+			case '*':
+				result = a * b;
+				break;
+			case '/': 
+				result = a / b;
+				break;
 		}
 		
 		return result;
 	}
 	
 	public String[] generateEquations() {
+		this.op[0] = this.randOp();
+		this.op[1] = this.randOp();
+		
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
 				this.nums[i][j] = randInt();
+				if (!validEq(i)) j--;
 			}
 		}
 		
-		this.op[0] = this.randOp();
-		this.op[1] = this.randOp();
 		
 		this.goal = Math.random() > 0.5 ? 1 : -1;
 		
@@ -106,11 +117,20 @@ public class MathGameState {
 	
 	private char randOp() {
 		char[] OPERATORS = new char[] {'+', '-', '*', '/'};
-		return OPERATORS[(int) Math.random() * 4];
+		return OPERATORS[(int) (Math.random() * 4)];
 	}
 	
 	private String toString(int id) {
 		return String.format("%d %s %d", this.nums[id][0], this.op[id], this.nums[id][1]);
+	}
+	
+	private boolean validEq(int i) {
+		if (this.op[i] == '/') {
+			if (this.nums[i][1] == 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
