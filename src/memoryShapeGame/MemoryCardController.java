@@ -8,7 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class MemoryCardController {
+import thinktactoeGame.Minigame;
+
+public class MemoryCardController implements Minigame {
 
 	// TODOs:
 	// Rules Screen
@@ -30,7 +32,7 @@ public class MemoryCardController {
 	private int cardsLeft = 16;
 	private int moves = 0;
 	
-	private boolean forfeit = false;
+	private char turn;
 	
 	private MemoryCardController() {
 		this.gameScreen = MemoryCardScreen.getInstance(this);
@@ -40,10 +42,19 @@ public class MemoryCardController {
 		return instance;
 	}
 	
+	@Override
+	public String getRules() {
+		 String rules = " - Click on the card to reveal the shape behind it \n" +
+                 " - Two consecutive cards with the same shape will get eliminated \n" +
+                 " - The game ends when all cards get eliminated \n" +
+                 " - The player wins the game with less moves made than the other player";
+		 return rules;
+	}
+	
 	public Card[] initCards() {
-		List<String> shuffledList = Arrays.asList(shapes);
-		Collections.shuffle(shuffledList);
-		shuffledList.toArray(shapes);
+//		List<String> shuffledList = Arrays.asList(shapes);
+//		Collections.shuffle(shuffledList);
+//		shuffledList.toArray(shapes);
 		for (int i = 0; i < shapes.length; i++) {
         	Card card = new Card(shapes[i]);
         	card.addActionListener(e -> {
@@ -79,8 +90,10 @@ public class MemoryCardController {
 		return this.cards;
 	}
 	
-	public int startGame() {
+	private int initGame(char player) {
+		// Launch the minigame in a new window
 		this.gameScreen.showScreen();
+		this.gameScreen.updateTurn("Player " + player);
 		this.cardsLeft = 16;
 		this.moves = 0;
 		gameScreen.updateCardsLeft(cardsLeft);
@@ -88,21 +101,18 @@ public class MemoryCardController {
 		while(this.cardsLeft != 0) { 
 			gameScreen.updateCardsLeft(cardsLeft);
 		}
-		System.out.println("Game ended");
 		return this.moves;
 	}
 	
-//	private void restartGame() {
-//		this.cardsLeft = 16;
-//		this.moves = 0;
-//	}
-//	
-	
-	public static void main(String[] args) {
-		MemoryCardController gc = MemoryCardController.getInstance();
-		int moves = gc.startGame();
-		System.out.println(moves);
-//		moves = gc.startGame();
-//		System.out.println(moves);
+	@Override
+	public boolean startGame(char player) {
+		this.turn = player;
+		int firstPlayerMoves = initGame(turn);
+		this.turn = this.turn == 'X' ? 'O' : 'X';
+		int secondPlayerMoves = initGame(turn);
+		this.gameScreen.updateTurn("GAME OVER!");
+		// returns who wins the game
+		// True: if the first player wins the game
+		return firstPlayerMoves > secondPlayerMoves;
 	}
 }

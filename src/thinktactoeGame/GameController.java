@@ -4,6 +4,7 @@ public class GameController {
 	
 	private GameScreen gameScreen;
 	private GameBoard gameBoard;
+	private MinigameController miniController;
 	
 	private final int sizeX = 3;
 	private final int sizeY = 3;
@@ -13,6 +14,7 @@ public class GameController {
 	public GameController() {
 		this.gameScreen = GameScreen.getInstance(this);
 		this.gameBoard = new GameBoard(sizeX, sizeY);
+		this.miniController = MinigameController.getInstance();
 		this.turn = 'X';
 	}
 	
@@ -44,11 +46,7 @@ public class GameController {
 		if (check != "Valid Move!") {
 			return;
 		}
-		
-		//TODO init a minigame here?
-		
-		//TODO if clause to check if the current player wins the minigame
-		
+				
 		dropPiece(row, col);
 		nextTurn();
 		this.gameScreen.updateTurn(this.turn);
@@ -64,8 +62,13 @@ public class GameController {
 	private void dropPiece(int row, int col) {
 		
 		//TODO init a minigame here?
-		
-		this.gameBoard.dropPiece(row, col, turn);;
+//		this.gameScreen.dispose();
+		boolean result = this.miniController.launchGame(this.turn);
+//		this.gameScreen.dispose();
+		if (result == true) {
+			this.gameBoard.dropPiece(row, col, turn);
+		}
+		return;
 	}
 	
 //	TODO Check if the game is over

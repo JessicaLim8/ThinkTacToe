@@ -11,6 +11,7 @@ public class GameScreen {
 	
 	private GameController gameController;
 	
+	private JFrame frame;
 	private JTextField coordinateField;
 	private JTextArea statusMessage;
 	private JPanel gameArea;
@@ -28,7 +29,7 @@ public class GameScreen {
 	}
 	
 	private void initialScreen() {
-		JFrame frame = new JFrame("Think-Tac-Toe");
+		this.frame = new JFrame("Think-Tac-Toe");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 830);
         
@@ -159,6 +160,9 @@ public class GameScreen {
 	    return true;
 	}
 	
+	public void dispose() {
+		this.frame.setVisible(false);
+	}
 	
 	public void showScreen(){
 		initialScreen();

@@ -14,6 +14,7 @@ public class MemoryCardScreen {
 	
 	private JTextField moves;
 	private JTextField cardsLeft;
+	private JLabel playerTurn;
 
 	private JPanel game;
 	
@@ -30,40 +31,41 @@ public class MemoryCardScreen {
 	
 	private void initialScreen() {
 		JFrame frame = new JFrame("Memory Card - 2D shapes");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
+        frame.setVisible(true);
 
         JPanel info = new JPanel();
         JPanel p1 = new JPanel();
         JPanel p2 = new JPanel();
         JPanel p3 = new JPanel();
         
-        JButton startGame = new JButton("Start Game");
-        JButton displayRule = new JButton("Rule");
-        JButton concede = new JButton("Concede");
-        p1.add(startGame);
-        p1.add(displayRule);
-        p1.add(concede);
+        this.playerTurn = new JLabel();
+//        JButton startGame = new JButton("Start Game");
+//        JButton displayRule = new JButton("Rule");
+//        p1.add(startGame);
+//        p1.add(displayRule);
+        p1.add(playerTurn);
         
         JLabel gameTitle = new JLabel("Memory Card - 2D shapes");
         p2.add(gameTitle);
 
-        JPanel rulePanel = new JPanel();
-        rulePanel.setLayout(new BoxLayout(rulePanel, BoxLayout.PAGE_AXIS));
-        JLabel l1 = new JLabel("Rules");
-        l1.setFont(new Font(l1.getFont().getName(), Font.PLAIN, 45));
-        JTextArea t1 = new JTextArea();
-        t1.setBackground(l1.getBackground());
-        t1.setEditable(false);
-        t1.setFont(new Font(l1.getFont().getName(), Font.PLAIN, 20));
-        String rules = " - Click on the card to reveal the shape behind it \n" +
-                       " - Two consecutive cards with the same shape will get eliminated \n" +
-                       " - The game ends when all cards get eliminated \n" +
-                       " - The player wins the game with less moves made than the other player";
-
-        t1.setText(rules);
-        rulePanel.add(l1);
-        rulePanel.add(t1);
+//        JPanel rulePanel = new JPanel();
+//        rulePanel.setLayout(new BoxLayout(rulePanel, BoxLayout.PAGE_AXIS));
+//        JLabel l1 = new JLabel("Rules");
+//        l1.setFont(new Font(l1.getFont().getName(), Font.PLAIN, 45));
+//        JTextArea t1 = new JTextArea();
+//        t1.setBackground(l1.getBackground());
+//        t1.setEditable(false);
+//        t1.setFont(new Font(l1.getFont().getName(), Font.PLAIN, 20));
+//        String rules = " - Click on the card to reveal the shape behind it \n" +
+//                       " - Two consecutive cards with the same shape will get eliminated \n" +
+//                       " - The game ends when all cards get eliminated \n" +
+//                       " - The player wins the game with less moves made than the other player";
+//
+//        t1.setText(rules);
+//        rulePanel.add(l1);
+//        rulePanel.add(t1);
         
         JLabel displayMoves = new JLabel("Moves:");
         this.moves = new JTextField("0");
@@ -90,23 +92,25 @@ public class MemoryCardScreen {
         }
 
         frame.getContentPane().add(BorderLayout.NORTH, info);
-        frame.getContentPane().add(BorderLayout.CENTER, rulePanel);
+        frame.getContentPane().add(BorderLayout.CENTER, this.game);
         frame.setVisible(true);
 
-        startGame.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    rulePanel.setVisible(false);
-                    startGame.setEnabled(false);
-                    frame.getContentPane().remove(rulePanel);
-                    frame.getContentPane().add(game);
-                    frame.revalidate();
-                }
-            }
-        );
+//        startGame.addActionListener(new ActionListener() {
+//                public void actionPerformed(ActionEvent e) {
+//                    rulePanel.setVisible(false);
+//                    startGame.setEnabled(false);
+//                    frame.getContentPane().remove(rulePanel);
+//                    frame.getContentPane().add(game);
+//                    frame.revalidate();
+//                	SwingUtilities.updateComponentTreeUI(frame);
+//                	return;
+//                }
+//            }
+//        );
 
-        displayRule.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    return;
+//        displayRule.addActionListener(new ActionListener() {
+//                public void actionPerformed(ActionEvent e) {
+//                    return;
 
                     //TODO bugged
 //                    System.out.println("Pressed");
@@ -114,15 +118,15 @@ public class MemoryCardScreen {
 //                    frame.getContentPane().add(rulePanel);
 //                    frame.invalidate();
 //                    frame.validate();
-                }
-            }
-        );
+//                }
+//            }
+//        );
 
-        concede.addActionListener(actionEvent -> {
+//        concede.addActionListener(actionEvent -> {
             //TODO concede implementation
-            return;
-                }
-        );
+//            return;
+//                }
+//        );
 
 
 	}
@@ -138,8 +142,8 @@ public class MemoryCardScreen {
 	public void updateMoves(int moves) {
 		this.moves.setText(Integer.toString(moves));
 	}
-
-//	private void showRule(JPanel ){
-//
-//    }
+	
+	public void updateTurn(String player) {
+		this.playerTurn.setText(player);
+	}
 }
