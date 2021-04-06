@@ -7,6 +7,7 @@ import brickBreakerGame.GamePlay;
 import mathGame.MathGameUI;
 import memoryShapeGame.MemoryCardScreen;
 import reactionGame.Gui;
+import RulesWork.RulesController;
 
 public class MainMenuController {
 	
@@ -38,11 +39,15 @@ public class MainMenuController {
 		} else if (gameID == 4) {
 //			PatternGameUI.returnToGame();
 		} else if (gameID == 5) {
-			Gui.returnToGame();
+//			Gui.returnToGame();
 		} else if (gameID == 0) {
 			
 		}
 		
+	}
+	
+	public static void showRules() {
+		RulesController.showRules(gameID);
 	}
 		
 }

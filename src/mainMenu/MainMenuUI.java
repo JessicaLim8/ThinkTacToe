@@ -69,6 +69,13 @@ public class MainMenuUI {
 			}
 		});
 		
+		rulesButton.addActionListener(new ActionListener()
+	    {
+			public void actionPerformed(ActionEvent e) {
+				MainMenuController.showRules();
+			}
+		});
+		
 		exitButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {

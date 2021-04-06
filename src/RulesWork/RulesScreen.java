@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 public class RulesScreen extends JFrame {
 
@@ -50,12 +54,25 @@ public class RulesScreen extends JFrame {
 		lblRules.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblRules.setBounds(45, 77, 786, 523);
 		contentPane.add(lblRules);
+		
+		JButton exitButton = new JButton("Exit Rules");
+		exitButton.setBounds(662, 24, 127, 38);
+		contentPane.add(exitButton);
+
+		exitButton.addActionListener(new ActionListener()
+	    {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
 		if (id == 0) {
 			lblTitle.setText("Think-Tac-Toe Rules");
 			lblRules.setText("Think-Tac-Toe plays very similarly to the classic Tic-Tac-Toe. Each player will be given a chance to put down a piece. Once a player has selected a spot to place their piece, they must beat their opponent in a cognitive minigame for the piece to be placed on that spot. If the player fails in placing their piece, their opponent may now select a spot. The opponent will have to win their minigame to place their piece as well. The winner is determined when a player places 3 pieces in a straight line.");
 		}
 		else if (id == 1) {
-			
+			lblTitle.setText("Pattern Minigame Rules");
+			lblRules.setText("<html>After stating the game it will display the pattern. Upon clicking ready \n the pattern will disapear. You must then repeat back the pattern \n using the color button. If you get it correct it will switch players and go again as the pattern grows until \n one player gets it wrong.</html>");
 		}
 		else if (id == 2) {
 			lblTitle.setText("Memory Shape Minigame Rules");
