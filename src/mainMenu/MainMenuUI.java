@@ -64,7 +64,7 @@ public class MainMenuUI {
 		returnButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
-				MainMenuController.returnToPatternGame();
+				MainMenuController.returnToGame();
 				frame.dispose();
 			}
 		});

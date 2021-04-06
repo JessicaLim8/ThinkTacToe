@@ -164,7 +164,7 @@ public class PatternGameUI {
 		menuButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
-				MainMenuController.displayMenu("1");
+				MainMenuController.displayMenu(1);
 				frame.setVisible(false);
 			}
 		});
