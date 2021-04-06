@@ -3,7 +3,7 @@ package mainMenu;
 
 import java.awt.EventQueue;
 import patternGame.PatternGameUI;
-import brickBreakerGame.GamePlay;
+import brickBreakerGame.BrickBreakerMain;
 import mathGame.MathGameUI;
 import memoryShapeGame.MemoryCardScreen;
 import reactionGame.Gui;
@@ -35,9 +35,9 @@ public class MainMenuController {
 		} else if (gameID == 2) {
 //			GamePlay.returnToGame();
 		} else if (gameID == 3) {
-//			PatternGameUI.returnToGame();
+			BrickBreakerMain.returnToGame();
 		} else if (gameID == 4) {
-//			PatternGameUI.returnToGame();
+			MathGameUI.returnToGame();
 		} else if (gameID == 5) {
 //			Gui.returnToGame();
 		} else if (gameID == 0) {
