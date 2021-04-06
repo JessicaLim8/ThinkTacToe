@@ -9,20 +9,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.Dimension;
 
-import javax.swing.JPanel;
+import mainMenu.MainMenuController;
 
 import java.awt.GridBagLayout;
-import javax.swing.JButton;
-
 import java.time.*;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class MathGameUI {
 
-	private JFrame frame;
+	private static JFrame frame;
 	private MathGameState state;
 	private Timer t;
+	private JButton menuButton;
 
 	/**
 	 * @wbp.nonvisual location=980,771
@@ -40,7 +39,7 @@ public class MathGameUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(MathGameState state) {
-		frame = new JFrame("MathGameScreen");
+		frame = new JFrame("MathGameScreen");		
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -57,9 +56,17 @@ public class MathGameUI {
         JLabel gameTitle = new JLabel("Speed Math");
         titlePanel.add(gameTitle);
         
+        menuButton = new JButton("Menu");
+        menuButton.setPreferredSize(new Dimension(50, 50));
+        
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.NORTH, titlePanel);
-        frame.getContentPane().add(BorderLayout.SOUTH, creditPanel);
+        frame.getContentPane().add(BorderLayout.SOUTH, menuButton);
+        
+        menuListener();
+
+        //frame.getContentPane().add(menuButton, BorderLayout.EAST);
+
         initialScreen(state);
         frame.setVisible(true);
 	}
@@ -277,5 +284,22 @@ public class MathGameUI {
 		question.setText(String.format("Select equation with the %s value", state.getGoal() == -1 ? "LOWER" : "HIGHER"));
 		score.setText(String.format("Current Score: %d", state.getCScore()));
 	}
+	
+    private void menuListener() {
+    	menuButton.addActionListener(new ActionListener()
+		    {
+			    public void actionPerformed(ActionEvent e) {
+			    	MainMenuController.displayMenu(4);
+			    	frame.setVisible(false);
+			    }
+		    });
+    }
+
+    public static void returnToGame() {
+	    System.out.println("Show Frame");
+	    frame.setVisible(true);
+	    frame.invalidate();
+	    frame.validate();
+    }
 
 }

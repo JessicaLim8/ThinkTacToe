@@ -1,4 +1,4 @@
-package reactionMinigame;
+package reactionGame;
 
 public class GuiAbstraction {
 	static long[] player1score = new long[6];

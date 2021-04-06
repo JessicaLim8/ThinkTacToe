@@ -83,11 +83,11 @@ public class RulesScreen extends JFrame {
 
 		}
 		else if (id == 4) {
-			lblTitle.setText("Math Minigame Rules");
+			lblTitle.setText("Select the equation that evaluates HIGHER or LOWER than the other, depending on the instruction above. Click the equals button if they evaluate to the same value");
 		}
 		else if (id == 5) {
 			lblTitle.setText("Reaction Time Minigame Rules");
-			lblRules.setText("<html>Player 1 must press the “Player 1 Start Game” button. Then, the user must click on the button labeled “Click Me!” \n as fast as they can. After pressing the button, the user must click on the “Press Again” button which will give the user another “Click Me!” button. This process repeats five times until it is Player 2’s turn. Player 2 will press the “Player 2 Start Game” button, and repeat the process Player 1 has gone through. At the end, each of the player’s average reaction speed will be calculated and a winner will be announced on the screen. Press the “Exit Game” button to exit the minigame.</html>");
+			lblRules.setText("<html>Player 1 must press the ï¿½Player 1 Start Gameï¿½ button. Then, the user must click on the button labeled ï¿½Click Me!ï¿½ \n as fast as they can. After pressing the button, the user must click on the ï¿½Press Againï¿½ button which will give the user another ï¿½Click Me!ï¿½ button. This process repeats five times until it is Player 2ï¿½s turn. Player 2 will press the ï¿½Player 2 Start Gameï¿½ button, and repeat the process Player 1 has gone through. At the end, each of the playerï¿½s average reaction speed will be calculated and a winner will be announced on the screen. Press the ï¿½Exit Gameï¿½ button to exit the minigame.</html>");
 		}
 		
 	}
