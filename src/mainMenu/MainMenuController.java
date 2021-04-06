@@ -1,11 +1,20 @@
 package mainMenu;
 
+
 import java.awt.EventQueue;
 import patternGame.PatternGameUI;
+import brickBreakerGame.GamePlay;
+import mathGame.MathGameUI;
+import memoryShapeGame.MemoryCardScreen;
+import reactionGame.Gui;
 
 public class MainMenuController {
-	public static void displayMenu(String ID) {
+	
+	private static int gameID;
+	
+	public static void displayMenu(int ID) {
 //		PatternGameState state = new PatternGameState();
+		gameID = ID;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -19,8 +28,21 @@ public class MainMenuController {
 		});
 	}
 	
-	public static void returnToPatternGame() {
-		PatternGameUI.returnToGame();
+	public static void returnToGame() {
+		if (gameID == 1) {
+			PatternGameUI.returnToGame();
+		} else if (gameID == 2) {
+//			GamePlay.returnToGame();
+		} else if (gameID == 3) {
+//			PatternGameUI.returnToGame();
+		} else if (gameID == 4) {
+//			PatternGameUI.returnToGame();
+		} else if (gameID == 5) {
+			Gui.returnToGame();
+		} else if (gameID == 0) {
+			
+		}
+		
 	}
 		
 }
