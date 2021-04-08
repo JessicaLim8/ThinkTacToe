@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePlay extends JPanel implements KeyListener, ActionListener {
-	private static boolean play = false;
+	public static boolean play = false;
 	private int score = 0;
 	private int totalBricks = 30;
 	
@@ -29,9 +29,6 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 	private int ballYdir = -2;
 	
 	private MapGenerator map;
-	
-	JButton button = new JButton("text goes here");
-	JPanel p = new JPanel();
 	
 	public GamePlay(){
 		map = new MapGenerator(3, 10);
@@ -60,7 +57,12 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 		// the scores 		
 		g.setColor(Color.black);
 		g.setFont(new Font("serif",Font.BOLD, 25));
-		g.drawString(""+score, 690,30);
+		g.drawString("Score: "+score, 670, 30);
+		
+		// the scores 		
+		g.setColor(Color.black);
+		g.setFont(new Font("serif",Font.ITALIC, 25));
+		g.drawString("Press Esc to Pause Game",30 ,30);
 		
 		// the paddle
 		g.setColor(Color.blue);
@@ -69,6 +71,14 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 		// the ball
 		g.setColor(Color.black);
 		g.fillOval(ballposX, ballposY, 20, 20);
+		
+		// Paused Game
+		if(!play) {
+			g.setColor(Color.darkGray);
+	        g.setFont(new Font("serif",Font.ITALIC, 30));
+	        g.drawString("Press any arrow key to start the game", 200,300);
+		}
+		
 	
 		// when you won the game
 		if(totalBricks <= 0){
