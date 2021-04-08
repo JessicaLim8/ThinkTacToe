@@ -1,7 +1,9 @@
 package patternGame;
 import java.awt.EventQueue;
 
-public class PatternGameController {
+import thinktactoeGame.Minigame;
+
+public class PatternGameController implements Minigame {
 		
 	public static void main(String[] args) {
 //		PatternGameState state = new PatternGameState();
@@ -15,6 +17,26 @@ public class PatternGameController {
 				}
 			}
 		});
+	}
+
+	@Override
+	public boolean startGame(char player) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PatternGameUI window = new PatternGameUI();
+//					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		return true;
+	}
+
+	@Override
+	public String getRules() {
+		return "rules";
 	}	
 		
 

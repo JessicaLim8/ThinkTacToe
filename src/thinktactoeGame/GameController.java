@@ -1,19 +1,33 @@
 package thinktactoeGame;
 
+import memoryShapeGame.MemoryCardController;
+
 public class GameController {
 	
 	private GameScreen gameScreen;
 	private GameBoard gameBoard;
 	
+	private static GameController instance = new GameController();
+	
 	private final int sizeX = 3;
 	private final int sizeY = 3;
 	
 	private char turn;
+	private int tempRow;
+	private int temoCol;
 	
-	public GameController() {
+	private GameController() {
 		this.gameScreen = GameScreen.getInstance(this);
 		this.gameBoard = new GameBoard(sizeX, sizeY);
+//		this.miniController = MinigameController.getInstance();
 		this.turn = 'X';
+	}
+	
+	public static GameController getInstance() {
+		if (instance == null) {
+			instance = new GameController();
+		}
+		return instance;
 	}
 	
 	public void showGameScreen() {
@@ -44,14 +58,10 @@ public class GameController {
 		if (check != "Valid Move!") {
 			return;
 		}
-		
-		//TODO init a minigame here?
-		
-		//TODO if clause to check if the current player wins the minigame
-		
-		dropPiece(row, col);
-		nextTurn();
-		this.gameScreen.updateTurn(this.turn);
+		this.tempRow = row;
+		this.temoCol = col;
+		launchGame();	
+//		dropPiece(row, col);
 	}
 	
 	private String validateMove(int row, int col) {
@@ -61,13 +71,19 @@ public class GameController {
 		return "Valid Move!";
 	}
 	
-	private void dropPiece(int row, int col) {
-		
-		//TODO init a minigame here?
-		
-		this.gameBoard.dropPiece(row, col, turn);;
+	private void launchGame() {
+		this.gameScreen.hide();
+		(new MinigameController(this.turn)).start();
 	}
 	
+	public void dropPiece(Boolean result) {
+		if (result == true) {
+			this.gameBoard.dropPiece(this.tempRow, this.temoCol, turn);
+		}
+		nextTurn();
+		this.gameScreen.updateTurn(this.turn);
+		this.gameScreen.show();
+	}
 //	TODO Check if the game is over
 //	private void checkGameOver() {
 //		
@@ -79,7 +95,7 @@ public class GameController {
 //	}
 
 	public static void main(String[] args) {
-		GameController gc = new GameController();
+		GameController gc = GameController.getInstance();
 		gc.showGameScreen();
 	}
 
