@@ -33,11 +33,6 @@ public class PatternGameController implements Minigame {
 		});
 		return true;
 	}
-
-	@Override
-	public String getRules() {
-		return "rules";
-	}	
 		
 
 }

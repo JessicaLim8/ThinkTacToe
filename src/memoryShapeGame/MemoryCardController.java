@@ -12,10 +12,6 @@ import thinktactoeGame.Minigame;
 
 public class MemoryCardController implements Minigame {
 
-	// TODOs:
-	// Rules Screen
-	// Display which players turn
-
 	private static MemoryCardController instance = new MemoryCardController();
 	
 	private MemoryCardScreen gameScreen;
@@ -42,14 +38,13 @@ public class MemoryCardController implements Minigame {
 		return instance;
 	}
 	
-	@Override
-	public String getRules() {
-		 String rules = " - Click on the card to reveal the shape behind it \n" +
-                 " - Two consecutive cards with the same shape will get eliminated \n" +
-                 " - The game ends when all cards get eliminated \n" +
-                 " - The player wins the game with less moves made than the other player";
-		 return rules;
-	}
+//	public String getRules() {
+//		 String rules = " - Click on the card to reveal the shape behind it \n" +
+//                 " - Two consecutive cards with the same shape will get eliminated \n" +
+//                 " - The game ends when all cards get eliminated \n" +
+//                 " - The player wins the game with less moves made than the other player";
+//		 return rules;
+//	}
 	
 	public Card[] initCards() {
 //		List<String> shuffledList = Arrays.asList(shapes);

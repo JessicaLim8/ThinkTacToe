@@ -21,8 +21,6 @@ public class MinigameController extends Thread{
 	private BrickBreakerMain breaker;
 	
 	private char turn = 'X';
-	//TODO Add brick breaker controller
-	//TODO Add Miles' minigame
 	
 	public MinigameController(char turn) {
 		this.math = new MathGameController();
@@ -47,7 +45,7 @@ public class MinigameController extends Thread{
 	public void run() {
 		Random rand = new Random();
 		int number = rand.nextInt(5 - 1 + 1) + 1;
-		number = 1; // test a specific game
+		number = 2; // test a specific game
 		boolean result = this.minigames.get(number).startGame(this.turn);
 		this.gc.dropPiece(result);
 	}

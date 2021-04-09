@@ -19,11 +19,6 @@ public class MathGameController implements Minigame{
 			}
 		});
 	}
-
-	@Override
-	public String getRules() {
-		return "rules";
-	}
 	
 	@Override
 	public boolean startGame(char player) {

@@ -79,10 +79,4 @@ public class BrickBreakerMain implements Minigame{
         return true;
 	}
 
-	@Override
-	public String getRules() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
