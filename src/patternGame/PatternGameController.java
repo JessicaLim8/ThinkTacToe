@@ -20,7 +20,7 @@ public class PatternGameController implements Minigame {
 	}
 
 	@Override
-	public boolean startGame(char player) {
+	public void startGame(char player) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -31,7 +31,6 @@ public class PatternGameController implements Minigame {
 				}
 			}
 		});
-		return true;
 	}
 		
 

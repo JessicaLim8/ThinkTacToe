@@ -19,7 +19,6 @@ public class GameController {
 	private GameController() {
 		this.gameScreen = GameScreen.getInstance(this);
 		this.gameBoard = new GameBoard(sizeX, sizeY);
-//		this.miniController = MinigameController.getInstance();
 		this.turn = 'X';
 	}
 	

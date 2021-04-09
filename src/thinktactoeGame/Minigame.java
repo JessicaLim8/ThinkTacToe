@@ -1,5 +1,5 @@
 package thinktactoeGame;
 
 public interface Minigame {
-	public boolean startGame(char player);
+	public void startGame(char player);
 }

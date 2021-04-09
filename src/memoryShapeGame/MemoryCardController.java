@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import thinktactoeGame.GameController;
 import thinktactoeGame.Minigame;
 
 public class MemoryCardController implements Minigame {
@@ -100,7 +101,7 @@ public class MemoryCardController implements Minigame {
 	}
 	
 	@Override
-	public boolean startGame(char player) {
+	public void startGame(char player) {
 		this.turn = player;
 		int firstPlayerMoves = initGame(turn);
 		this.gameScreen.close();
@@ -108,13 +109,16 @@ public class MemoryCardController implements Minigame {
 		int secondPlayerMoves = initGame(turn);
 		this.gameScreen.updateTurn("GAME OVER!");
 		this.gameScreen.close();
+		GameController gc = GameController.getInstance();
+		gc.dropPiece(firstPlayerMoves < secondPlayerMoves);
 		// returns who wins the game
 		// True: if the first player wins the game
-		return firstPlayerMoves < secondPlayerMoves;
+//		return firstPlayerMoves < secondPlayerMoves;
 	}
 	
 	public static void main(String[] args) {
 		MemoryCardController memory = MemoryCardController.getInstance();
-		Boolean result = memory.startGame('X');
+//		Boolean result = memory.startGame('X');
+		memory.startGame('X');
 	}
 }

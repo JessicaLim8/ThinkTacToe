@@ -21,7 +21,7 @@ public class MathGameController implements Minigame{
 	}
 	
 	@Override
-	public boolean startGame(char player) {
+	public void startGame(char player) {
 		// TODO Auto-generated method stub
 		MathGameState state = new MathGameState();
 		EventQueue.invokeLater(new Runnable() {
@@ -34,8 +34,8 @@ public class MathGameController implements Minigame{
 				}
 			}
 		});
-		int[] results = state.getScores();
-		return results[0]>results[1];
+//		int[] results = state.getScores();
+//		return results[0]>results[1];
 	}	
 	
 }

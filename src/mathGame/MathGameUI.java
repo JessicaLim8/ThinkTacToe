@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.Dimension;
 
 import mainMenu.MainMenuController;
+import thinktactoeGame.GameController;
 
 import java.awt.GridBagLayout;
 import java.time.*;
@@ -141,6 +142,8 @@ public class MathGameUI {
 			scoreLabel = String.format("Winner: Player %d", results[0] > results[1] ? 1 : 2);
 		}
 		
+		GameController gc = GameController.getInstance();
+		gc.dropPiece(results[0]>results[1]);
 		
 		JPanel goScreen = new JPanel();
 		JLabel intro = new JLabel("Final Results");
