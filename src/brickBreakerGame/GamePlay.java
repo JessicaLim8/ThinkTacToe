@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import thinktactoeGame.GameController;
+
 public class GamePlay extends JPanel implements KeyListener, ActionListener {
 	public static boolean play = false;
 	private int score = 0;
@@ -93,6 +95,9 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
              g.setColor(Color.darkGray);
              g.setFont(new Font("serif",Font.BOLD, 20));           
              g.drawString("Press (Enter) to Restart", 300,350);  
+             
+             gameEnd(true);
+             
 		}
 		
 		// when you lose the game
@@ -107,7 +112,9 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
              
              g.setColor(Color.darkGray);
              g.setFont(new Font("serif",Font.BOLD, 20));           
-             g.drawString("Press (Enter) to Restart", 300,350);        
+             g.drawString("Press (Enter) to Restart", 300,350);   
+             
+             gameEnd(false);
         }
 		
 		g.dispose();
@@ -173,6 +180,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 	public void moveLeft(){
 		play = true;
 		playerX-=20;	 	
+	}
+	
+	public void gameEnd(boolean result) {
+		GameController gc = GameController.getInstance();
+        gc.dropPiece(result);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
