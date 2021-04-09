@@ -2,6 +2,7 @@ package patternGame;
 import java.awt.EventQueue;
 
 import thinktactoeGame.Minigame;
+import thinktactoeGame.GameController;
 
 public class PatternGameController implements Minigame {
 		
@@ -31,6 +32,11 @@ public class PatternGameController implements Minigame {
 				}
 			}
 		});
+	}
+	
+	public void endGame(boolean p1Wins) {
+		GameController gc = GameController.getInstance();
+		gc.dropPiece(p1Wins);
 	}
 		
 

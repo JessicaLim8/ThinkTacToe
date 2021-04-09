@@ -75,7 +75,7 @@ public class GameController {
 		(new MinigameController(this.turn)).start();
 	}
 	
-	public void dropPiece(Boolean result) {
+	public void dropPiece(boolean result) {
 		if (result == true) {
 			this.gameBoard.dropPiece(this.tempRow, this.temoCol, turn);
 		}
