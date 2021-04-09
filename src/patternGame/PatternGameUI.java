@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import mainMenu.MainMenuController;
+import thinktactoeGame.GameController;
 
 import java.awt.*;
 import java.util.Random;
@@ -301,6 +302,8 @@ public class PatternGameUI {
 			patternLabel.setText("Pattern didnt Match - Player " + currPlayer + " Lost");
 			return 2;
 		}
+//		GameController gc = GameController.getInstance();
+//		gc.dropPiece(results[0]>results[1]);
 		
 	}
 	
