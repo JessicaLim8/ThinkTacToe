@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import thinktactoeGame.Minigame;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,7 +17,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class Gui extends JFrame {
+public class Gui extends JFrame implements Minigame {
 	JButton btnStartGame2;
 	JLabel lblPlayer2;
 	JLabel lblPlayer1;
@@ -555,5 +558,20 @@ public class Gui extends JFrame {
 		
 		
 
+	}
+
+	@Override
+	public void startGame(char player) {
+		// TODO Auto-generated method stub
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gui frame = new Gui();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }

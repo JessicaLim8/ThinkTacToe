@@ -51,7 +51,7 @@ public class BrickBreakerMain implements Minigame{
 	}
 
 	@Override
-	public boolean startGame(char player) {
+	public void startGame(char player) {
 		frame = new JFrame();	
 		
 		GamePlay gamePlay = new GamePlay();
@@ -76,7 +76,7 @@ public class BrickBreakerMain implements Minigame{
 				GamePlay.pauseGame();
 			}
 		});
-        return true;
+//        return true;
 	}
 
 }
