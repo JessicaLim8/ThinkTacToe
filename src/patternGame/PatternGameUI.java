@@ -30,6 +30,8 @@ public class PatternGameUI {
 	private int[] pattern;
 	private boolean gameOver;
 	private boolean gameStarted;
+	private boolean activeTurn;
+	private boolean p1Wins;
 	
 	/**
 	 * @wbp.nonvisual location=980,771
@@ -44,6 +46,7 @@ public class PatternGameUI {
 		currPlayer = 1;
 		gameOver = false;
 		gameStarted = false;
+		activeTurn = false;
 		startButton();
 		menuListener();
 		
@@ -150,11 +153,13 @@ public class PatternGameUI {
 						gameStarted = true;
 					} else if (!gameOver) {
 						playerTurn();
+						activeTurn = true;
 					} 
 				}
 			});
 		} else {
 			frame.dispose();
+			PatternGameController.endGame(p1Wins);
 		}
 		
 
@@ -235,6 +240,7 @@ public class PatternGameUI {
 		redButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
+				if (!activeTurn) return;
 				inputString = inputString + " RED";
 				numInputs += 1;
 				try {
@@ -248,6 +254,7 @@ public class PatternGameUI {
 		blueButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
+				if (!activeTurn) return;
 				inputString = inputString + " BLUE";
 				numInputs += 1;
 				try {
@@ -261,6 +268,7 @@ public class PatternGameUI {
 		greenButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
+				if (!activeTurn) return;
 				inputString = inputString + " GREEN";
 				numInputs += 1;
 				try {
@@ -274,6 +282,7 @@ public class PatternGameUI {
 		yellowButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
+				if (!activeTurn) return;
 				inputString = inputString + " YELLOW";
 				numInputs += 1;
 				try {
@@ -293,6 +302,7 @@ public class PatternGameUI {
 		if (inputString.equals(patternString)) {
 			System.out.println("Pattern Matched");
 			patternLabel.setText("Pattern Matched");
+			activeTurn = false;
 			nextTurn();
 			return 1;
 		} else {
@@ -301,7 +311,6 @@ public class PatternGameUI {
 			startButton.setText("Return to Main Game");
 			patternLabel.setText("Pattern didnt Match - Player " + currPlayer + " Lost");
 			boolean p1Wins = currPlayer == 2;
-			PatternGameController.endGame(p1Wins);
 			return 2;
 		}
 //		GameController gc = GameController.getInstance();

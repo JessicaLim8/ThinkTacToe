@@ -34,7 +34,7 @@ public class PatternGameController implements Minigame {
 		});
 	}
 	
-	public void endGame(boolean p1Wins) {
+	public static void endGame(boolean p1Wins) {
 		GameController gc = GameController.getInstance();
 		gc.dropPiece(p1Wins);
 	}
