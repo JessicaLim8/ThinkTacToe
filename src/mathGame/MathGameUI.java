@@ -142,9 +142,6 @@ public class MathGameUI {
 			scoreLabel = String.format("Winner: Player %d", results[0] > results[1] ? 1 : 2);
 		}
 		
-		GameController gc = GameController.getInstance();
-		gc.dropPiece(results[0]>results[1]);
-		
 		JPanel goScreen = new JPanel();
 		JLabel intro = new JLabel("Final Results");
 		JLabel result = new JLabel(scoreLabel);
@@ -171,6 +168,9 @@ public class MathGameUI {
 				frame.invalidate();
 				frame.validate();
 				SwingUtilities.updateComponentTreeUI(frame);
+				
+				GameController gc = GameController.getInstance();
+				gc.dropPiece(results[0]>results[1]);
 			}
 		});
 	}
@@ -200,7 +200,7 @@ public class MathGameUI {
 		JLabel score = new JLabel(String.format("Current Score: %d", state.getCScore()));
 		score.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		int countdown = 30;
+		int countdown =15;
 		Date startDate = new Date();
 		
 		JLabel timerLabel = new JLabel(String.format("Time Remaining: %d", countdown));
