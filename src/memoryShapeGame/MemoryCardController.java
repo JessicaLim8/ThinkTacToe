@@ -112,4 +112,9 @@ public class MemoryCardController implements Minigame {
 		// True: if the first player wins the game
 		return firstPlayerMoves < secondPlayerMoves;
 	}
+	
+	public static void main(String[] args) {
+		MemoryCardController memory = MemoryCardController.getInstance();
+		Boolean result = memory.startGame('X');
+	}
 }

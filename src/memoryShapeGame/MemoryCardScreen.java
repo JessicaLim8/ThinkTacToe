@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import mainMenu.MainMenuController;
+
 public class MemoryCardScreen {
 	
 	private static MemoryCardScreen instance;
@@ -16,7 +18,8 @@ public class MemoryCardScreen {
 	private JTextField cardsLeft;
 	private JLabel playerTurn;
 	private JPanel game;
-	private JFrame frame;
+	private static JFrame frame;
+	private JButton menuButton;
 	
 	private MemoryCardScreen(MemoryCardController gc) {
 		this.controller = gc;
@@ -30,7 +33,7 @@ public class MemoryCardScreen {
 	}
 	
 	private void initialScreen() {
-		this.frame = new JFrame("Memory Card - 2D shapes");
+		frame = new JFrame("Memory Card - 2D shapes");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
         frame.setVisible(true);
@@ -90,45 +93,22 @@ public class MemoryCardScreen {
         for (Card card: cards) {
         	this.game.add(card);
         }
+        
+        menuButton = new JButton("Menu");
+        menuButton.setPreferredSize(new Dimension(50, 50));
+        menuButton.addActionListener(new ActionListener()
+	    {
+		    public void actionPerformed(ActionEvent e) {
+		    	System.out.println("ressed");
+		    	MainMenuController.displayMenu(2);
+		    	frame.setVisible(false);
+		    }
+	    });
 
         frame.getContentPane().add(BorderLayout.NORTH, info);
         frame.getContentPane().add(BorderLayout.CENTER, this.game);
+        frame.getContentPane().add(BorderLayout.SOUTH, menuButton);
         frame.setVisible(true);
-
-//        startGame.addActionListener(new ActionListener() {
-//                public void actionPerformed(ActionEvent e) {
-//                    rulePanel.setVisible(false);
-//                    startGame.setEnabled(false);
-//                    frame.getContentPane().remove(rulePanel);
-//                    frame.getContentPane().add(game);
-//                    frame.revalidate();
-//                	SwingUtilities.updateComponentTreeUI(frame);
-//                	return;
-//                }
-//            }
-//        );
-
-//        displayRule.addActionListener(new ActionListener() {
-//                public void actionPerformed(ActionEvent e) {
-//                    return;
-
-                    //TODO bugged
-//                    System.out.println("Pressed");
-//                    frame.getContentPane().remove(game);
-//                    frame.getContentPane().add(rulePanel);
-//                    frame.invalidate();
-//                    frame.validate();
-//                }
-//            }
-//        );
-
-//        concede.addActionListener(actionEvent -> {
-            //TODO concede implementation
-//            return;
-//                }
-//        );
-
-
 	}
 	
 	public void showScreen(){
@@ -136,8 +116,8 @@ public class MemoryCardScreen {
 	}
 	
 	public void close() {
-		this.frame.setVisible(false);
-		this.frame.dispose();
+		frame.setVisible(false);
+		frame.dispose();
 	}
 	
 	public void updateCardsLeft(int left) {
@@ -151,5 +131,11 @@ public class MemoryCardScreen {
 	public void updateTurn(String player) {
 		this.playerTurn.setText(player);
 	}
+
+    public static void returnToGame() {
+	    frame.setVisible(true);
+	    frame.invalidate();
+	    frame.validate();
+    }
 	
 }

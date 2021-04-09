@@ -33,7 +33,7 @@ public class MainMenuController {
 		if (gameID == 1) {
 			PatternGameUI.returnToGame();
 		} else if (gameID == 2) {
-//			GamePlay.returnToGame();
+			MemoryCardScreen.returnToGame();
 		} else if (gameID == 3) {
 			BrickBreakerMain.returnToGame();
 		} else if (gameID == 4) {
