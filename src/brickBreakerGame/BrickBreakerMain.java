@@ -8,7 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import mainMenu.MainMenuController;
+
 import thinktactoeGame.Minigame;
+import javax.swing.JTextArea;
 
 public class BrickBreakerMain implements Minigame{
 	
@@ -27,17 +29,22 @@ public class BrickBreakerMain implements Minigame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton menuButton = new JButton("Menu");
-		frame.add(menuButton, BorderLayout.SOUTH);
+		frame.getContentPane().add(menuButton, BorderLayout.SOUTH);
 		
-		frame.add(gamePlay);
+		frame.getContentPane().add(gamePlay);
         frame.setVisible(true);
+        
+        menuButton.setFocusable(false);
         
         menuButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
 				MainMenuController.displayMenu(3);
 				frame.setVisible(false);
-				GamePlay.pauseGame();
+				if(GamePlay.play) {
+					GamePlay.pauseGame();
+				}
+				
 			}
 		});
         
@@ -45,6 +52,10 @@ public class BrickBreakerMain implements Minigame{
 	}
 	
 	public static void returnToGame() {
+		if(!GamePlay.play) {
+			GamePlay.pauseGame();
+		}
+		
 		frame.setVisible(true);
 		frame.invalidate();
 		frame.validate();
