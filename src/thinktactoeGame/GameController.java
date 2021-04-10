@@ -1,5 +1,7 @@
 package thinktactoeGame;
 
+import java.util.Random;
+
 import memoryShapeGame.MemoryCardController;
 
 public class GameController {
@@ -15,11 +17,14 @@ public class GameController {
 	private char turn;
 	private int tempRow;
 	private int temoCol;
+	private int gameNum = 0;
 	
 	private GameController() {
 		this.gameScreen = GameScreen.getInstance(this);
 		this.gameBoard = new GameBoard(sizeX, sizeY);
 		this.turn = 'X';
+		Random rand = new Random();
+		this.gameNum = rand.nextInt(5) + 1;
 	}
 	
 	public static GameController getInstance() {
@@ -72,7 +77,13 @@ public class GameController {
 	
 	private void launchGame() {
 		this.gameScreen.hide();
-		(new MinigameController(this.turn)).start();
+		this.gameNum = this.gameNum % 5 + 1;
+		
+		// remove this section when brick breaker works
+		if (this.gameNum == 3) {
+			this.gameNum += 1;
+		}
+		(new MinigameController(this.turn, this.gameNum)).start();
 	}
 	
 	public void dropPiece(boolean result) {
