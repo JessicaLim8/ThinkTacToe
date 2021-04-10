@@ -310,7 +310,7 @@ public class PatternGameUI {
 			gameOver = true;
 			startButton.setText("Return to Main Game");
 			patternLabel.setText("Pattern didnt Match - Player " + currPlayer + " Lost");
-			boolean p1Wins = currPlayer == 2;
+			p1Wins = currPlayer == 2;
 			return 2;
 		}
 //		GameController gc = GameController.getInstance();
