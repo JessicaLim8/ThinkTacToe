@@ -1,5 +1,8 @@
 package reactionGame;
 import mainMenu.MainMenuController;
+import thinktactoeGame.GameController;
+import thinktactoeGame.Minigame;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -14,7 +17,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class Gui extends JFrame {
+public class Gui extends JFrame implements Minigame {
 	static Gui frame;
 	JButton btnStartGame2;
 	JLabel lblPlayer2;
@@ -581,5 +584,20 @@ public class Gui extends JFrame {
 		frame.invalidate();
 		frame.validate();
 		}
+
+	@Override
+	public void startGame(char player) {
+		// TODO Auto-generated method stub
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new Gui();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 }

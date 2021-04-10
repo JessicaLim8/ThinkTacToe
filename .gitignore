@@ -6,3 +6,5 @@ out/
 ThinkTacToe.iml
 bin/
 .class
+.project
+.classpath
