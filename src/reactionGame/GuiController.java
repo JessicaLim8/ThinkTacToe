@@ -29,8 +29,8 @@ public class GuiController {
 		return avg/(i+1);
 		}
 	public static int calcWinner() {
-		long avg1 = calcAvg(1,4);
-		long avg2 = calcAvg(2,4);
+		long avg1 = calcAvg(1,2);
+		long avg2 = calcAvg(2,2);
 		if (avg1 > avg2) {
 			return 2;
 		}

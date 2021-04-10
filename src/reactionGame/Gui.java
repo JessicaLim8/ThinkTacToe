@@ -1,14 +1,11 @@
 package reactionGame;
-
+import mainMenu.MainMenuController;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import thinktactoeGame.Minigame;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -17,7 +14,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class Gui extends JFrame implements Minigame {
+public class Gui extends JFrame {
+	static Gui frame;
 	JButton btnStartGame2;
 	JLabel lblPlayer2;
 	JLabel lblPlayer1;
@@ -37,7 +35,7 @@ public class Gui extends JFrame implements Minigame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Gui frame = new Gui();
+					frame = new Gui();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,7 +71,14 @@ public class Gui extends JFrame implements Minigame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				//send int winner somewhere
-				System.exit(0);
+				GameController gc = GameController.getInstance();
+				if (GuiController.calcWinner() == 1) {
+					gc.dropPiece(true);
+				}
+				else if (GuiController.calcWinner() == 2) {
+					gc.dropPiece(false);
+				}
+				//System.exit(0);
 			}
 		});
 		btnExit.setBounds(350, 164, 101, 21);
@@ -101,8 +106,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -111,7 +116,7 @@ public class Gui extends JFrame implements Minigame {
 				i++;
 			}
 		});
-		btn0.setBounds(31, 189, 135, 21);
+		btn0.setBounds(31, 228, 135, 21);
 		contentPane.add(btn0);
 		btn0.setVisible(false);
 		
@@ -136,8 +141,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -171,8 +176,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -206,8 +211,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -241,8 +246,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -276,8 +281,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -311,8 +316,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -347,8 +352,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -382,8 +387,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -417,8 +422,8 @@ public class Gui extends JFrame implements Minigame {
 					int winner = GuiController.calcWinner();
 					lblWinner.setText("Player " +winner+ " is victorious!");
 					btnExit.setVisible(true);
-					long score1 = GuiController.calcAvg(1, 4);
-					long score2 = GuiController.calcAvg(2, 4);
+					long score1 = GuiController.calcAvg(1, 2);
+					long score2 = GuiController.calcAvg(2, 2);
 					lblPlayer1.setText("Player 1 time: " + score1 + "ms");
 					lblPlayer2.setText("Player 2 time: " + score2 + "ms");
 					lblScore.setText("");
@@ -435,7 +440,7 @@ public class Gui extends JFrame implements Minigame {
 		btnStartGame2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				btnStartGame2.setText("Press Again \n Attempt " + (i+1) + "/5");
+				btnStartGame2.setText("Press Again \n Attempt " + (i+1) + "/3");
 				for (int j = 0; j < 1; j++) {
 					int randButton = GuiController.calcRand();
 					GuiController.calcSleep();
@@ -470,7 +475,7 @@ public class Gui extends JFrame implements Minigame {
 					else if (randButton == 9) {
 						btn9.setVisible(true);
 					}
-					if (i == 4) {
+					if (i == 2) {
 						final2 = true;
 					}
 				}
@@ -488,7 +493,7 @@ public class Gui extends JFrame implements Minigame {
 		btnStartGame1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				btnStartGame1.setText("Press Again \n Attempt " + (i+1) + "/5");
+				btnStartGame1.setText("Press Again \n Attempt " + (i+1) + "/3");
 				for (int j = 0; j < 1; j++) {
 					int randButton = GuiController.calcRand();
 					GuiController.calcSleep();
@@ -524,7 +529,7 @@ public class Gui extends JFrame implements Minigame {
 						btn9.setVisible(true);
 					}
 
-					if (i == 4) {
+					if (i == 2) {
 						btnStartGame1.setVisible(false);
 						final1 = true;
 					}
@@ -554,24 +559,27 @@ public class Gui extends JFrame implements Minigame {
 		lblPlayer2.setBounds(530, 130, 209, 28);
 		contentPane.add(lblPlayer2);
 		
-
-		
-		
-
-	}
-
-	@Override
-	public void startGame(char player) {
-		// TODO Auto-generated method stub
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Gui frame = new Gui();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		JButton btnMenu = new JButton("Menu");
+		btnMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainMenuController.displayMenu(5);
+				frame.setVisible(false);
 			}
 		});
+		btnMenu.setBounds(31, 168, 135, 21);
+		contentPane.add(btnMenu);
+		
+
+		
+		
+
 	}
+	public static void returnToGame() {
+		System.out.println("Show Frame");
+		frame.setVisible(true);
+		frame.invalidate();
+		frame.validate();
+		}
+	
 }
