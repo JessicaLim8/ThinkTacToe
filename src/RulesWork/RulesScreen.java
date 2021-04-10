@@ -81,7 +81,7 @@ public class RulesScreen extends JFrame {
 		}
 		else if (id == 3) {
 			lblTitle.setText("Brick Breaker Minigame Rules");
-			lblRules.setText("<html>When you have joined the Brick Breaker Game, press either left or right arrow key to start the game. \n Move the paddle around to keep the ball in the board and break the bricks \n and make sure the ball doesn't hit the ground. \n if you are able to break all the bricks, you'll win. else you'll lose.</html>");
+			lblRules.setText("<html> When you have joined the Brick Breaker Game, press either left or right arrow key to start the game. <br> Move the paddle around to keep the ball on the board and break the bricks to increase the score. <br> Make sure the ball doesn't hit the ground or else you'll lose. <br> if you are able to break all the bricks, you win. </html>");
 
 		}
 		else if (id == 4) {
