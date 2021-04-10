@@ -69,29 +69,28 @@ public class PatternGameUI {
 		
 		redButton = new JButton();
 		redButton.setFont(new Font("Tahoma", Font.BOLD, 24));
-		redButton.setBackground(Color.RED);
-		redButton.setForeground(Color.RED);
+		redButton.setBackground(new Color(255, 0, 0));
 		redButton.setBounds(232, 292, 100, 100);
 		frame.getContentPane().add(redButton);
 		
 		greenButton = new JButton();
 		greenButton.setForeground(Color.GREEN);
 		greenButton.setFont(new Font("Tahoma", Font.BOLD, 18));
-		greenButton.setBackground(Color.GREEN);
+		greenButton.setBackground(new Color(51, 255, 0));
 		greenButton.setBounds(417, 292, 100, 100);
 		frame.getContentPane().add(greenButton);
 		
 		blueButton = new JButton();
 		blueButton.setForeground(Color.BLUE);
 		blueButton.setFont(new Font("Tahoma", Font.BOLD, 24));
-		blueButton.setBackground(Color.BLUE);
+		blueButton.setBackground(new Color(0, 0, 255));
 		blueButton.setBounds(232, 450, 100, 100);
 		frame.getContentPane().add(blueButton);
 		
 		yellowButton = new JButton();
 		yellowButton.setForeground(Color.YELLOW);
 		yellowButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		yellowButton.setBackground(Color.YELLOW);
+		yellowButton.setBackground(new Color(255, 255, 51));
 		yellowButton.setBounds(417, 450, 100, 100);
 		frame.getContentPane().add(yellowButton);
 	    
