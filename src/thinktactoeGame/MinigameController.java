@@ -47,15 +47,12 @@ public class MinigameController extends Thread{
 
 
 	public void run() {
-<<<<<<< HEAD
 		Random rand = new Random();
 		int number = rand.nextInt(5) + 1;
 		number = 2; // test a specific game
-=======
 //		Random rand = new Random();
 //		int number = rand.nextInt(5) + 1;
 //		number = 5; // test a specific game
->>>>>>> 5af94d5ec6d8c6b4c13607f7069c740ddeb3d541
 		this.minigames.get(number).startGame(this.turn);
 //		this.gc.dropPiece(result);
 	}
