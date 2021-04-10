@@ -47,9 +47,6 @@ public class MinigameController extends Thread{
 
 
 	public void run() {
-		Random rand = new Random();
-		int number = rand.nextInt(5) + 1;
-		number = 2; // test a specific game
 //		Random rand = new Random();
 //		int number = rand.nextInt(5) + 1;
 //		number = 5; // test a specific game
