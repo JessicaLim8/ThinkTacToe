@@ -39,18 +39,10 @@ public class MemoryCardController implements Minigame {
 		return instance;
 	}
 	
-//	public String getRules() {
-//		 String rules = " - Click on the card to reveal the shape behind it \n" +
-//                 " - Two consecutive cards with the same shape will get eliminated \n" +
-//                 " - The game ends when all cards get eliminated \n" +
-//                 " - The player wins the game with less moves made than the other player";
-//		 return rules;
-//	}
-	
 	public Card[] initCards() {
-//		List<String> shuffledList = Arrays.asList(shapes);
-//		Collections.shuffle(shuffledList);
-//		shuffledList.toArray(shapes);
+		List<String> shuffledList = Arrays.asList(shapes);
+		Collections.shuffle(shuffledList);
+		shuffledList.toArray(shapes);
 		for (int i = 0; i < shapes.length; i++) {
         	Card card = new Card(shapes[i]);
         	card.addActionListener(e -> {

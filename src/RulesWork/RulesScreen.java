@@ -76,6 +76,7 @@ public class RulesScreen extends JFrame {
 		}
 		else if (id == 2) {
 			lblTitle.setText("Memory Shape Minigame Rules");
+			lblRules.setText("<html>- Click on the card to reveal the shape behind it <br> - Only two shapes can bee seen at a time <br> - Two consecutive cards with the same shape will get eliminated <br> - The game ends when all cards get eliminated <br>  - The player wins the game with less moves made than the other player</html>");
 
 		}
 		else if (id == 3) {
