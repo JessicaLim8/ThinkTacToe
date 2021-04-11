@@ -29,6 +29,9 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 	private int ballposY = 350;
 	private int ballXdir = -1;
 	private int ballYdir = -2;
+	public int player1 = 0;
+	public int player2 = 0;
+	public int gameCount = 0;
 	
 	private MapGenerator map;
 	
@@ -65,6 +68,18 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 		g.setColor(Color.black);
 		g.setFont(new Font("serif",Font.ITALIC, 25));
 		g.drawString("Press Esc to Pause Game",30 ,30);
+
+		// Player
+		if(player1 == 0 && player2 == 0){
+			g.setColor(Color.black);
+			g.setFont(new Font("serif",Font.BOLD, 25));
+			g.drawString("Player 1",350 ,30);
+		}
+		else{
+			g.setColor(Color.black);
+			g.setFont(new Font("serif",Font.BOLD, 25));
+			g.drawString("Player 2",350 ,30);
+		}
 		
 		// the paddle
 		g.setColor(Color.blue);
@@ -96,7 +111,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
              g.setFont(new Font("serif",Font.BOLD, 20));           
              g.drawString("Press (Enter) to Restart", 300,350);  
              
-             gameEnd(true);
+             gameTracker();
              
 		}
 		
@@ -112,9 +127,9 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
              
              g.setColor(Color.darkGray);
              g.setFont(new Font("serif",Font.BOLD, 20));           
-             g.drawString("Press (Enter) to Restart", 300,350);   
+             g.drawString("Press (Enter) to Restart for next Player", 300,350);   
              
-             gameEnd(false);
+             gameTracker();
         }
 		
 		g.dispose();
@@ -185,6 +200,25 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 	public void gameEnd(boolean result) {
 		GameController gc = GameController.getInstance();
         gc.dropPiece(result);
+	}
+
+	public void gameTracker(){
+		if(player1 == 0 && player2 == 0){
+			player1 = score;
+			score = 0;
+		}
+		if(player1 != 0 && player2 == 0){
+			player2 = score;
+			score = 0;
+		}
+		if(player1 != 0 && player2 != 0){
+			boolean res =  player1 > player2;
+			player1 = 0;
+			player2 = 0;
+			System.out.println(player1 > player2);
+			GameController gc = GameController.getInstance();
+			gc.dropPiece(res);
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
