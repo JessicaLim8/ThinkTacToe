@@ -83,21 +83,57 @@ public class GameController {
 		if (this.gameNum == 3) {
 			this.gameNum += 1;
 		}
-		(new MinigameController(this.turn, this.gameNum)).start();
+//		(new MinigameController(this.turn, this.gameNum)).start();
+		(new MinigameController(this.turn, 3)).start();
 	}
 	
 	public void dropPiece(boolean result) {
 		if (result == true) {
 			this.gameBoard.dropPiece(this.tempRow, this.temoCol, turn);
 		}
+		checkGameOver();
 		nextTurn();
 		this.gameScreen.updateTurn(this.turn);
 		this.gameScreen.show();
 	}
 //	TODO Check if the game is over
-//	private void checkGameOver() {
-//		
-//	}
+	private void checkGameOver() {
+		System.out.println(gameBoard.occupiedBy(1, 1));
+		
+		String[][] boardPieces;
+		String[] checks;
+		boardPieces = new String[sizeX][sizeY];
+		checks = new String[8];
+		
+		for(int i = 0; i < sizeX; i++){
+			for (int j = 0; j < sizeY; j++){
+				boardPieces[i][j] = String.valueOf(gameBoard.occupiedBy(i, j));
+			}
+		}
+
+		checks[0] = boardPieces[0][0] + boardPieces[0][1] + boardPieces[0][2];
+		checks[1] = boardPieces[1][0] + boardPieces[1][1] + boardPieces[1][2];
+		checks[2] = boardPieces[2][0] + boardPieces[2][1] + boardPieces[2][2];
+
+		checks[3] = boardPieces[0][0] + boardPieces[1][0] + boardPieces[2][0];
+		checks[4] = boardPieces[0][1] + boardPieces[1][1] + boardPieces[2][1];
+		checks[5] = boardPieces[0][2] + boardPieces[1][2] + boardPieces[2][2];
+		
+		checks[6] = boardPieces[0][0] + boardPieces[1][1] + boardPieces[2][2];
+		checks[7] = boardPieces[2][0] + boardPieces[1][1] + boardPieces[0][2];	
+
+		for (int i = 0; i < 8; i++){
+			if(checks[i].equals("XXX")){
+				// TODO call exit screen for X Winner
+			}
+			else if(checks[i].equals("OOO")){
+				// TODO call exit screen for O Winner
+			}
+			else{
+				// TODO call Draw game on exit screen
+			}
+		}
+	}
 	
 //	TODO Initiate minigame
 //	private void startMinigame() {
