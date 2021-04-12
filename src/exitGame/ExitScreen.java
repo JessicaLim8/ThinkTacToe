@@ -11,41 +11,36 @@ import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 
 public class ExitScreen {
+	
+	
 
 	public static void main(String[] args) {
 		
 		JFrame exitFrame;
-		JPanel panel;
-		JTextArea textArea;
 		
 		exitFrame = new JFrame();
-		exitFrame.setSize(800, 700);
+		exitFrame.getContentPane().setLayout(null);
+		exitFrame.setSize(700, 600);
 		exitFrame.setTitle("Game Over");
-		exitFrame.setResizable(true);
+		exitFrame.setResizable(false);
 		exitFrame.setVisible(true);
 		exitFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		panel = new JPanel();
-		panel.setSize(600, 600);
-		panel.setBackground(Color.BLACK);
-		panel.setVisible(true);
-		exitFrame.setVisible(true);
-		
-		exitFrame.getContentPane().add(panel, BorderLayout.CENTER);
-		
-		JButton btnNewButton = new JButton("Restart Game");
-		panel.add(btnNewButton, BorderLayout.SOUTH);
-		
-		textArea = new JTextArea("Game Over");
-		panel.add(textArea);
-		btnNewButton.addActionListener(new ActionListener() {
+	
+		JButton button = new JButton("Exit Game");
+		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		button.setBounds(250, 364, 171, 82);
+		exitFrame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("Restart Game");
+		button_1.setBounds(250, 255, 171, 82);
+		exitFrame.getContentPane().add(button_1);
+		
 		exitFrame.setVisible(true);
-		
-		
+
 		
 	}
-
 }
