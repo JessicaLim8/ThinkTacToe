@@ -2,6 +2,7 @@ package thinktactoeGame;
 
 import java.util.Random;
 
+import exitGame.ExitScreen;
 import memoryShapeGame.MemoryCardController;
 
 public class GameController {
@@ -18,6 +19,9 @@ public class GameController {
 	private int tempRow;
 	private int temoCol;
 	private int gameNum = 0;
+	public static String Winner;
+	public int count = 0;
+	
 	
 	private GameController() {
 		this.gameScreen = GameScreen.getInstance(this);
@@ -125,14 +129,25 @@ public class GameController {
 		for (int i = 0; i < 8; i++){
 			if(checks[i].equals("XXX")){
 				// TODO call exit screen for X Winner
+				Winner = "X Won the Game";
+				ExitScreen.main(null);
 			}
 			else if(checks[i].equals("OOO")){
 				// TODO call exit screen for O Winner
+				Winner = "O Won the Game";
+				ExitScreen.main(null);
 			}
-			else{
-				// TODO call Draw game on exit screen
-			}
+//			else{
+//				// TODO call Draw game on exit screen
+//				Winner = "Draw Game";
+//				ExitScreen.main(null);
+//			}
 		}
+		if(count == 9) {
+			Winner = "Draw Game";
+			ExitScreen.main(null);
+		}
+		
 	}
 	
 //	TODO Initiate minigame
