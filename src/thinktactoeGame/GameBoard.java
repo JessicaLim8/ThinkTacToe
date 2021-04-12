@@ -44,4 +44,12 @@ public class GameBoard extends JPanel{
 		return this.board[row][col].isOccupied();
 	}
 	
+	public Piece getPiece(int row, int col) {
+		return this.board[row][col];
+	}
+	
+	public char occupiedBy(int row, int col) {
+		return this.board[row][col].occupiedBy();
+	}
+	
 }
