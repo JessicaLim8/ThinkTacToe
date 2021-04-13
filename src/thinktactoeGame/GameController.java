@@ -94,8 +94,10 @@ public class GameController {
 	public void dropPiece(boolean result) {
 		if (result == true) {
 			this.gameBoard.dropPiece(this.tempRow, this.temoCol, turn);
+			checkGameOver();
+			count++;
 		}
-		checkGameOver();
+		
 		nextTurn();
 		this.gameScreen.updateTurn(this.turn);
 		this.gameScreen.show();
@@ -128,12 +130,12 @@ public class GameController {
 
 		for (int i = 0; i < 8; i++){
 			if(checks[i].equals("XXX")){
-				// TODO call exit screen for X Winner
+				
 				Winner = "X Won the Game";
 				ExitScreen.main(null);
 			}
 			else if(checks[i].equals("OOO")){
-				// TODO call exit screen for O Winner
+				
 				Winner = "O Won the Game";
 				ExitScreen.main(null);
 			}

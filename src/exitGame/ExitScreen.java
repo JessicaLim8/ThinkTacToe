@@ -30,6 +30,7 @@ public class ExitScreen {
 		JButton exitButton = new JButton("Exit Game");
 		exitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
 			}
 		});
 		exitButton.setBounds(250, 364, 171, 82);
@@ -38,6 +39,8 @@ public class ExitScreen {
 		JButton restartButton = new JButton("Restart Game");
 		restartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GameController.main(null);
+				exitFrame.dispose();
 			}
 		});
 		restartButton.setBounds(250, 255, 171, 82);
