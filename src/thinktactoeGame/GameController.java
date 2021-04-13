@@ -84,13 +84,14 @@ public class GameController {
 		this.gameNum = this.gameNum % 5 + 1;
 		
 		(new MinigameController(this.turn, this.gameNum)).start();
+		//dropPiece(true);
 	}
 	
 	public void dropPiece(boolean result) {
 		if (result == true) {
 			this.gameBoard.dropPiece(this.tempRow, this.temoCol, turn);
-			checkGameOver();
 			count++;
+			checkGameOver();
 		}
 		
 		nextTurn();
