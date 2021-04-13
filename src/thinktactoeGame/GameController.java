@@ -10,7 +10,7 @@ public class GameController {
 	private GameScreen gameScreen;
 	private GameBoard gameBoard;
 	
-	private static GameController instance = new GameController();
+//	private static GameController instance = new GameController();
 	
 	private final int sizeX = 3;
 	private final int sizeY = 3;
@@ -23,7 +23,7 @@ public class GameController {
 	public int count = 0;
 	
 	
-	private GameController() {
+	public GameController() {
 		this.gameScreen = GameScreen.getInstance(this);
 		this.gameBoard = new GameBoard(sizeX, sizeY);
 		this.turn = 'X';
@@ -31,12 +31,12 @@ public class GameController {
 		this.gameNum = rand.nextInt(5) + 1;
 	}
 	
-	public static GameController getInstance() {
-		if (instance == null) {
-			instance = new GameController();
-		}
-		return instance;
-	}
+//	public static GameController getInstance() {
+//		if (instance == null) {
+//			instance = new GameController();
+//		}
+//		return instance;
+//	}
 	
 	public void showGameScreen() {
 		gameScreen.showScreen();
@@ -153,7 +153,7 @@ public class GameController {
 //	}
 
 	public static void main(String[] args) {
-		GameController gc = GameController.getInstance();
+		GameController gc = new GameController();
 		gc.showGameScreen();
 	}
 
