@@ -2,6 +2,7 @@ package thinktactoeGame;
 
 import java.util.Random;
 
+import exitGame.ExitScreen;
 import memoryShapeGame.MemoryCardController;
 
 public class GameController {
@@ -18,6 +19,9 @@ public class GameController {
 	private int tempRow;
 	private int temoCol;
 	private int gameNum = 0;
+	public static String Winner;
+	public int count = 0;
+	
 	
 	private GameController() {
 		this.gameScreen = GameScreen.getInstance(this);
@@ -79,25 +83,69 @@ public class GameController {
 		this.gameScreen.hide();
 		this.gameNum = this.gameNum % 5 + 1;
 		
-		// remove this section when brick breaker works
-		if (this.gameNum == 3) {
-			this.gameNum += 1;
-		}
 		(new MinigameController(this.turn, this.gameNum)).start();
 	}
 	
 	public void dropPiece(boolean result) {
 		if (result == true) {
 			this.gameBoard.dropPiece(this.tempRow, this.temoCol, turn);
+			checkGameOver();
+			count++;
 		}
+		
 		nextTurn();
 		this.gameScreen.updateTurn(this.turn);
 		this.gameScreen.show();
 	}
 //	TODO Check if the game is over
-//	private void checkGameOver() {
-//		
-//	}
+	private void checkGameOver() {
+		System.out.println(gameBoard.occupiedBy(1, 1));
+		
+		String[][] boardPieces;
+		String[] checks;
+		boardPieces = new String[sizeX][sizeY];
+		checks = new String[8];
+		
+		for(int i = 0; i < sizeX; i++){
+			for (int j = 0; j < sizeY; j++){
+				boardPieces[i][j] = String.valueOf(gameBoard.occupiedBy(i, j));
+			}
+		}
+
+		checks[0] = boardPieces[0][0] + boardPieces[0][1] + boardPieces[0][2];
+		checks[1] = boardPieces[1][0] + boardPieces[1][1] + boardPieces[1][2];
+		checks[2] = boardPieces[2][0] + boardPieces[2][1] + boardPieces[2][2];
+
+		checks[3] = boardPieces[0][0] + boardPieces[1][0] + boardPieces[2][0];
+		checks[4] = boardPieces[0][1] + boardPieces[1][1] + boardPieces[2][1];
+		checks[5] = boardPieces[0][2] + boardPieces[1][2] + boardPieces[2][2];
+		
+		checks[6] = boardPieces[0][0] + boardPieces[1][1] + boardPieces[2][2];
+		checks[7] = boardPieces[2][0] + boardPieces[1][1] + boardPieces[0][2];	
+
+		for (int i = 0; i < 8; i++){
+			if(checks[i].equals("XXX")){
+				
+				Winner = "X Won the Game";
+				ExitScreen.main(null);
+			}
+			else if(checks[i].equals("OOO")){
+				
+				Winner = "O Won the Game";
+				ExitScreen.main(null);
+			}
+//			else{
+//				// TODO call Draw game on exit screen
+//				Winner = "Draw Game";
+//				ExitScreen.main(null);
+//			}
+		}
+		if(count == 9) {
+			Winner = "Draw Game";
+			ExitScreen.main(null);
+		}
+		
+	}
 	
 //	TODO Initiate minigame
 //	private void startMinigame() {
