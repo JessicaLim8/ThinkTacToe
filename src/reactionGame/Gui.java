@@ -81,6 +81,7 @@ public class Gui extends JFrame implements Minigame {
 				else if (GuiController.calcWinner() == 2) {
 					gc.dropPiece(false);
 				}
+				frame.dispose();
 				//System.exit(0);
 			}
 		});

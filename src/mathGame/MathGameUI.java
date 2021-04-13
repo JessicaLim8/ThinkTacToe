@@ -171,6 +171,7 @@ public class MathGameUI {
 				
 				GameController gc = GameController.getInstance();
 				gc.dropPiece(results[0]>results[1]);
+				frame.dispose();
 			}
 		});
 	}
