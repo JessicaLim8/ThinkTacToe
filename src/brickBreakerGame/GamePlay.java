@@ -215,9 +215,10 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 			boolean res =  player1 > player2;
 			player1 = 0;
 			player2 = 0;
-			System.out.println(player1 > player2);
+//			System.out.println(player1 > player2);
 			GameController gc = GameController.getInstance();
 			gc.dropPiece(res);
+			BrickBreakerMain.exitFrame();
 		}
 	}
 	

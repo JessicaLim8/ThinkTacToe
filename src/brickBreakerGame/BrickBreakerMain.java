@@ -60,6 +60,10 @@ public class BrickBreakerMain implements Minigame{
 		frame.invalidate();
 		frame.validate();
 	}
+	
+	public static void exitFrame() {
+		frame.dispose();
+	}
 
 	@Override
 	public void startGame(char player) {
