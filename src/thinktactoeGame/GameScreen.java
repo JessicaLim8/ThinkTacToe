@@ -1,6 +1,9 @@
 package thinktactoeGame;
 
 import javax.swing.*;
+
+import mainMenu.MainMenuController;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,11 +14,12 @@ public class GameScreen {
 	
 	private GameController gameController;
 	
-	private JFrame frame;
+	private static JFrame frame;
 	private JTextField coordinateField;
 	private JTextArea statusMessage;
 	private JPanel gameArea;
 	private JLabel turn;
+	private JButton menuButton;
 	
 	private GameScreen(GameController gc) {
 		this.gameController = gc;
@@ -63,6 +67,10 @@ public class GameScreen {
         p3.add(submit);
         p3.add(clear);
         p1.add(p3);
+        
+        menuButton = new JButton("Menu");
+	    menuButton.setBounds(875, 750, 89, 23);
+	    frame.getContentPane().add(menuButton);
         
         
         // Error or Success Message
@@ -131,6 +139,8 @@ public class GameScreen {
           }
         });
         
+        menuListener();
+        
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.EAST, inputPanel);
         frame.getContentPane().add(BorderLayout.SOUTH, creditPanel);
@@ -170,6 +180,23 @@ public class GameScreen {
 	
 	public void showScreen(){
 		initialScreen();
+	}
+	
+	private void menuListener() {
+		menuButton.addActionListener(new ActionListener()
+	    {
+			public void actionPerformed(ActionEvent e) {
+				MainMenuController.displayMenu(0);
+				frame.setVisible(false);
+			}
+		});
+	}
+	
+	public static void returnToGame() {
+		System.out.println("Show Frame");
+		frame.setVisible(true);
+		frame.invalidate();
+		frame.validate();
 	}
 
 

@@ -8,6 +8,7 @@ import mathGame.MathGameUI;
 import memoryShapeGame.MemoryCardScreen;
 import reactionGame.Gui;
 import RulesWork.RulesController;
+import thinktactoeGame.GameScreen;
 
 public class MainMenuController {
 	
@@ -30,7 +31,9 @@ public class MainMenuController {
 	}
 	
 	public static void returnToGame() {
-		if (gameID == 1) {
+		if (gameID == 0) {
+			GameScreen.returnToGame();
+		} else if (gameID == 1) {
 			PatternGameUI.returnToGame();
 		} else if (gameID == 2) {
 			MemoryCardScreen.returnToGame();
