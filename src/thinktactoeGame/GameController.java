@@ -55,8 +55,8 @@ public class GameController {
 	}
 	
 	public void coordEntered(String coord) {
-		int row = Character.getNumericValue(coord.charAt(0));
-		int col = Character.getNumericValue(coord.charAt(1));
+		int row = Character.getNumericValue(coord.charAt(0)) - 1;
+		int col = Character.getNumericValue(coord.charAt(1)) - 1;
 		if (row >= sizeX || col >= sizeY) {
 			this.gameScreen.updateStatusMessage("Invalid Coordinate! \nExample Usage: 11");
 			return;
