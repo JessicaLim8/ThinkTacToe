@@ -83,12 +83,7 @@ public class GameController {
 		this.gameScreen.hide();
 		this.gameNum = this.gameNum % 5 + 1;
 		
-		// remove this section when brick breaker works
-		if (this.gameNum == 3) {
-			this.gameNum += 1;
-		}
-//		(new MinigameController(this.turn, this.gameNum)).start();
-		(new MinigameController(this.turn, 3)).start();
+		(new MinigameController(this.turn, this.gameNum)).start();
 	}
 	
 	public void dropPiece(boolean result) {
