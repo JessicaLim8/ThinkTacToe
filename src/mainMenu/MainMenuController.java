@@ -42,7 +42,7 @@ public class MainMenuController {
 		} else if (gameID == 4) {
 			MathGameUI.returnToGame();
 		} else if (gameID == 5) {
-//			Gui.returnToGame();
+			Gui.returnToGame();
 		} else if (gameID == 0) {
 			
 		}

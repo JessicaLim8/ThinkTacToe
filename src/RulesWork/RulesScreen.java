@@ -90,7 +90,7 @@ public class RulesScreen extends JFrame {
 		}
 		else if (id == 5) {
 			lblTitle.setText("Reaction Time Minigame Rules");
-			lblRules.setText("<html>Player 1 must press the �Player 1 Start Game� button. Then, the user must click on the button labeled �Click Me!� \n as fast as they can. After pressing the button, the user must click on the �Press Again� button which will give the user another �Click Me!� button. This process repeats five times until it is Player 2�s turn. Player 2 will press the �Player 2 Start Game� button, and repeat the process Player 1 has gone through. At the end, each of the player�s average reaction speed will be calculated and a winner will be announced on the screen. Press the �Exit Game� button to exit the minigame.</html>");
+			lblRules.setText("<html>Player 1 must press the Player 1 Start Game button. Then, the user must click on the button labeled Click Me! as fast as they can. After pressing the button, the user must click on the Press Again button which will give the user another Click Me! button. This process repeats five times until it is Player 2s turn. Player 2 will press the Player 2 Start Game button, and repeat the process Player 1 has gone through. At the end, each of the players average reaction speed will be calculated and a winner will be announced on the screen. Press the Exit Game button to exit the minigame.</html>");
 		}
 		
 	}
