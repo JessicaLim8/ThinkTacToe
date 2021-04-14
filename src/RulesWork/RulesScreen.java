@@ -68,7 +68,7 @@ public class RulesScreen extends JFrame {
 		
 		if (id == 0) {
 			lblTitle.setText("Think-Tac-Toe Rules");
-			lblRules.setText("Think-Tac-Toe plays very similarly to the classic Tic-Tac-Toe. Each player will be given a chance to put down a piece. Once a player has selected a spot to place their piece, they must beat their opponent in a cognitive minigame for the piece to be placed on that spot. If the player fails in placing their piece, their opponent may now select a spot. The opponent will have to win their minigame to place their piece as well. The winner is determined when a player places 3 pieces in a straight line.");
+			lblRules.setText("<html>Think-Tac-Toe plays very similarly to the classic Tic-Tac-Toe. Each player will be given a chance to put down a piece. Once a player has selected a spot to place their piece, they must beat their opponent in a cognitive minigame for the piece to be placed on that spot. If the player fails in placing their piece, their opponent may now select a spot. The opponent will have to win their minigame to place their piece as well. The winner is determined when a player places 3 pieces in a straight line.</html>");
 		}
 		else if (id == 1) {
 			lblTitle.setText("Pattern Minigame Rules");
@@ -85,7 +85,8 @@ public class RulesScreen extends JFrame {
 
 		}
 		else if (id == 4) {
-			lblTitle.setText("Select the equation that evaluates HIGHER or LOWER than the other, depending on the instruction above. Click the equals button if they evaluate to the same value");
+			lblTitle.setText("Math Minigame Rules");
+			lblRules.setText("<html>Select the equation that evaluates HIGHER or LOWER than the other, depending on the instruction above. Click the equals button if they evaluate to the same value</html>");
 		}
 		else if (id == 5) {
 			lblTitle.setText("Reaction Time Minigame Rules");
