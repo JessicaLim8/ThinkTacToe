@@ -52,9 +52,10 @@ public class BrickBreakerMain implements Minigame{
 	}
 	
 	public static void returnToGame() {
-		if(!GamePlay.play) {
-			GamePlay.pauseGame();
-		}
+//		if(!GamePlay.play) {
+//			GamePlay.pauseGame();
+//		}
+//		GamePlay.play = false;
 		
 		frame.setVisible(true);
 		frame.invalidate();
@@ -78,17 +79,22 @@ public class BrickBreakerMain implements Minigame{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton menuButton = new JButton("Menu");
-		frame.add(menuButton, BorderLayout.SOUTH);
+		frame.getContentPane().add(menuButton, BorderLayout.SOUTH);
 		
-		frame.add(gamePlay);
+		frame.getContentPane().add(gamePlay);
         frame.setVisible(true);
+        
+        menuButton.setFocusable(false);
         
         menuButton.addActionListener(new ActionListener()
 	    {
 			public void actionPerformed(ActionEvent e) {
 				MainMenuController.displayMenu(3);
 				frame.setVisible(false);
-				GamePlay.pauseGame();
+				if(GamePlay.play) {
+					GamePlay.pauseGame();
+				}
+				
 			}
 		});
 //        return true;
