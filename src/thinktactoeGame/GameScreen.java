@@ -122,10 +122,6 @@ public class GameScreen {
           public void actionPerformed(ActionEvent e)
           {
         	String coord = coordinateField.getText();
-        	if (coord.length() != 2 || !isNumeric(coord)) {
-        		updateStatusMessage("Invalid Coordinate! \nExample Usage: 23");
-        		return;
-        	}
       		gameController.coordEntered(coord);
           }
         });

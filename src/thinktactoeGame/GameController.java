@@ -21,6 +21,7 @@ public class GameController {
 	private int gameNum = 0;
 	public static String Winner;
 	public int count = 0;
+	private boolean cheat = false;
 	
 	
 	private GameController() {
@@ -55,21 +56,55 @@ public class GameController {
 	}
 	
 	public void coordEntered(String coord) {
+		if (!isNumeric(coord)) {
+			this.gameScreen.updateStatusMessage("Invalid Coordinate! \nExample Usage: 11");
+			return;
+		}
+		
 		int row = Character.getNumericValue(coord.charAt(0)) - 1;
 		int col = Character.getNumericValue(coord.charAt(1)) - 1;
+		
 		if (row >= sizeX || col >= sizeY) {
 			this.gameScreen.updateStatusMessage("Invalid Coordinate! \nExample Usage: 11");
 			return;
 		}
+		
 		String check = validateMove(row, col);
 		this.gameScreen.updateStatusMessage(check);
 		if (check != "Valid Move!") {
 			return;
 		}
+		
+		if((coord.length() == 3 || coord.length() == 4) && coord.charAt(2) == 'C') {
+			cheat = true;
+		}
+		
 		this.tempRow = row;
 		this.temoCol = col;
-		launchGame();	
-//		dropPiece(row, col);
+		
+		if (cheat && coord.length() == 4) {
+			this.gameNum = Character.getNumericValue(coord.charAt(3)) - 1;
+			launchGame();
+		}
+		else if (cheat) {
+			dropPiece(true);
+		}
+		else {
+			launchGame();
+		}
+		cheat =false;
+	}
+	
+	private boolean isNumeric(String coord) {
+	    if (coord == null) {
+	        return false;
+	    }
+	    try {
+	        double d = Double.parseDouble(coord.substring(0, 1));
+	    } catch (NumberFormatException nfe) {
+	        return false;
+	    }
+	    return true;
 	}
 	
 	private String validateMove(int row, int col) {
@@ -84,7 +119,6 @@ public class GameController {
 		this.gameNum = this.gameNum % 5 + 1;
 		
 		(new MinigameController(this.turn, this.gameNum)).start();
-		//dropPiece(true);
 	}
 	
 	public void dropPiece(boolean result) {
@@ -98,6 +132,7 @@ public class GameController {
 		this.gameScreen.updateTurn(this.turn);
 		this.gameScreen.show();
 	}
+	
 //	TODO Check if the game is over
 	private void checkGameOver() {
 		System.out.println(gameBoard.occupiedBy(1, 1));
