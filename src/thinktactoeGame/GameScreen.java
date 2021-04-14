@@ -178,6 +178,10 @@ public class GameScreen {
 		this.frame.setVisible(true);
 	}
 	
+	public void destroy() {
+		this.frame.dispose();
+	}
+	
 	public void showScreen(){
 		initialScreen();
 	}

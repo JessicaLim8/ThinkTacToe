@@ -39,7 +39,9 @@ public class ExitScreen {
 		JButton restartButton = new JButton("Restart Game");
 		restartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GameController.main(null);
+//				GameController.main(null);
+				GameController gc = GameController.getInstance();
+				gc.restartGame();
 				exitFrame.dispose();
 			}
 		});
